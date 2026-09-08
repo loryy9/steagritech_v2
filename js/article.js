@@ -136,7 +136,6 @@
 
     var categoryEl = document.querySelector("[data-article-category]");
     var titleEl = document.querySelector("[data-article-title]");
-    var authorEl = document.querySelector("[data-article-author]");
     var dateEl = document.querySelector("[data-article-date]");
     var readingTimeEl = document.querySelector("[data-article-reading-time]");
     var coverEl = document.querySelector("[data-article-cover]");
@@ -147,7 +146,6 @@
       categoryEl.setAttribute("href", "articles.html?category=" + encodeURIComponent(article.category || "Blog"));
     }
     if (titleEl) titleEl.textContent = article.title;
-    if (authorEl) authorEl.textContent = article.author || "Redazione";
     if (dateEl) dateEl.textContent = formatDate(article.date);
     if (readingTimeEl) readingTimeEl.textContent = estimateReadingTime(article.content);
     if (coverEl && article.image) {

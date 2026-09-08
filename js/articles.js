@@ -58,8 +58,6 @@
       escapeHtml(article.excerpt || "") +
       "</p>" +
       '<div class="article-card__meta">' +
-      "<span>" +
-      escapeHtml(article.author || "Redazione") +
       "</span>" +
       "<span>&middot;</span>" +
       "<span>" +
@@ -77,12 +75,13 @@
       : "";
 
     return (
-      '<a class="featured-card" href="article.html?slug=' + encodeURIComponent(article.slug) + '">' +
+      '<a class="featured-card" href="#  ">' +
+    //   '<a class="featured-card" href="article.html?slug=' + encodeURIComponent(article.slug) + '">' +
         img +
         '<div class="featured-card__overlay">' +
           '<span class="featured-card__category">' + escapeHtml(article.category || "Blog") + "</span>" +
           '<h3 class="featured-card__title">' + escapeHtml(article.title) + "</h3>" +
-          '<div class="featured-card__meta">' + escapeHtml(article.author || "Redazione") + " &middot; " + formatDate(article.date) + "</div>" +
+          '<div class="featured-card__meta">' + formatDate(article.date) + "</div>" +
         "</div>" +
       "</a>"
     );
@@ -140,8 +139,7 @@
         (article.excerpt || "") +
         " " +
         (article.category || "") +
-        " " +
-        (article.author || "")
+        " " 
       ).toLowerCase();
       return haystack.indexOf(query.toLowerCase()) !== -1;
     }

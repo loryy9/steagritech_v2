@@ -30,6 +30,7 @@
   function initTheme() {
     var stored = getStoredTheme();
     var preferred = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    preferred = 'light'; // Forza il tema chiaro
     applyTheme(preferred);
 
     var toggle = document.querySelector("[data-theme-toggle]");

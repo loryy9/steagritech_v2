@@ -56,7 +56,6 @@ Apri `content/articles-data.js`: è un array `window.BLOG_ARTICLES`. Copia uno d
   title: "Titolo dell'articolo",
   excerpt: "Breve riassunto mostrato nelle card.",
   category: "Sviluppo",
-  author: "Il tuo nome",
   date: "2026-09-08",
   image: "https://.../immagine.jpg",
   featured: false,
@@ -85,14 +84,14 @@ Basta cambiare i valori esadecimali per rifare completamente la palette. Il puls
 
 La sezione "Articoli in evidenza" in `index.html` usa lo stesso meccanismo della posizione del logo: cambia solo la classe sul contenitore, il JavaScript resta identico. Tre opzioni:
 
-| Classe                        | Aspetto |
-|--------------------------------|---------|
-| `featured-grid--mosaic`         | 1 articolo grande a sinistra + 2 impilati a destra (default) |
-| `featured-grid--mosaic-flip`    | Come sopra, specchiato: grande a destra |
-| `featured-grid--equal`          | Tutti gli articoli della stessa dimensione, in fila (si adatta a qualsiasi numero) |
+| Classe                       | Aspetto                                                                            |
+| ---------------------------- | ---------------------------------------------------------------------------------- |
+| `featured-grid--mosaic`      | 1 articolo grande a sinistra + 2 impilati a destra (default)                       |
+| `featured-grid--mosaic-flip` | Come sopra, specchiato: grande a destra                                            |
+| `featured-grid--equal`       | Tutti gli articoli della stessa dimensione, in fila (si adatta a qualsiasi numero) |
 
 ```html
-<div class="featured-grid featured-grid--mosaic" data-featured="3">
+<div class="featured-grid featured-grid--mosaic" data-featured="3"></div>
 ```
 
 Le varianti "mosaico" sono pensate per esattamente 3 articoli (il primo diventa quello grande); `featured-grid--equal` invece si adatta a qualunque numero, se cambi `data-featured="N"`. Su schermi sotto i 1000px tutte le varianti diventano una singola colonna impilata, per restare leggibili su tablet e mobile.
@@ -154,7 +153,7 @@ Niente circuiti pubblicitari esterni: i banner li vendi e gestisci tu direttamen
 Nelle pagine sono già predisposti degli spazi placeholder tratteggiati (in Home, Articoli, Articolo singolo e Contatti), ciascuno con una classe di formato che ne fissa la dimensione:
 
 | Classe                    | Dimensioni |
-|---------------------------|------------|
+| ------------------------- | ---------- |
 | `.ad-banner--leaderboard` | 728×90     |
 | `.ad-banner--large-rect`  | 336×280    |
 | `.ad-banner--rectangle`   | 300×250    |
@@ -165,16 +164,21 @@ Un placeholder vuoto è così:
 
 ```html
 <div class="ad-banner ad-banner--leaderboard">
-  <span class="ad-banner__label">Spazio pubblicitario 728×90</span>
+    <span class="ad-banner__label">Spazio pubblicitario 728×90</span>
 </div>
 ```
 
 **Per attivare un banner**, sostituisci l'intero `<div>...</div>` con un `<a>` che porta **le stesse due classi** (`ad-banner` + il formato) e il link/immagine del cliente al posto dello `<span>`:
 
 ```html
-<a class="ad-banner ad-banner--leaderboard" href="https://sito-cliente.com"
-   target="_blank" rel="noopener" onclick="trackBannerClick('Nome_Cliente')">
-  <img src="assets/banners/cliente.jpg" alt="Banner pubblicitario">
+<a
+    class="ad-banner ad-banner--leaderboard"
+    href="https://sito-cliente.com"
+    target="_blank"
+    rel="noopener"
+    onclick="trackBannerClick('Nome_Cliente')"
+>
+    <img src="assets/banners/cliente.jpg" alt="Banner pubblicitario" />
 </a>
 ```
 
@@ -191,14 +195,30 @@ Usando sempre le stesse classi di formato (`ad-banner--leaderboard`, `ad-banner-
 
 ```html
 <div class="ad-slot">
-  <a class="ad-banner ad-banner--leaderboard ad-banner--desktop-only"
-     href="https://sito-cliente.com" target="_blank" rel="noopener" onclick="trackBannerClick('Nome_Cliente')">
-    <img src="assets/banners/cliente-desktop.jpg" alt="Banner pubblicitario">
-  </a>
-  <a class="ad-banner ad-banner--mobile ad-banner--mobile-only"
-     href="https://sito-cliente.com" target="_blank" rel="noopener" onclick="trackBannerClick('Nome_Cliente')">
-    <img src="assets/banners/cliente-mobile.jpg" alt="Banner pubblicitario">
-  </a>
+    <a
+        class="ad-banner ad-banner--leaderboard ad-banner--desktop-only"
+        href="https://sito-cliente.com"
+        target="_blank"
+        rel="noopener"
+        onclick="trackBannerClick('Nome_Cliente')"
+    >
+        <img
+            src="assets/banners/cliente-desktop.jpg"
+            alt="Banner pubblicitario"
+        />
+    </a>
+    <a
+        class="ad-banner ad-banner--mobile ad-banner--mobile-only"
+        href="https://sito-cliente.com"
+        target="_blank"
+        rel="noopener"
+        onclick="trackBannerClick('Nome_Cliente')"
+    >
+        <img
+            src="assets/banners/cliente-mobile.jpg"
+            alt="Banner pubblicitario"
+        />
+    </a>
 </div>
 ```
 
@@ -219,6 +239,7 @@ var GA_MEASUREMENT_ID = "G-XXXXXXX";
 con il tuo ID di misurazione reale (lo trovi su analytics.google.com dopo aver creato una proprietà). Finché resta `"G-XXXXXXX"`, il banner compare comunque ma Analytics non si attiva mai, nemmeno se l'utente accetta — utile per testare il sito senza tracciare nulla.
 
 **Come funziona il banner** (già incluso in ogni pagina, non serve aggiungerlo a mano):
+
 - Alla prima visita compare in basso, con due pulsanti: **Rifiuta** e **Accetta** (mai un singolo pulsante "OK": la normativa richiede una scelta reale, non solo un avviso).
 - Se l'utente **rifiuta**, Analytics non si carica affatto e la scelta viene ricordata (non ricompare ad ogni pagina).
 - Se l'utente **accetta**, Analytics si carica in quel momento (non prima) e la scelta viene ricordata.
@@ -241,4 +262,5 @@ Il form include anche una checkbox obbligatoria di accettazione dell'Informativa
 ## Responsive
 
 Il layout è mobile-first con breakpoint principali a `700px` (tablet) e `1000px` (desktop). Il menu diventa un pannello a scomparsa (hamburger) sotto i `700px`.
+
 # steagritech_v2
