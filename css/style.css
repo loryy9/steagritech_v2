@@ -1,0 +1,954 @@
+/* =========================================================
+   STYLE.CSS — Boilerplate blog
+   Struttura:
+   1. Reset base
+   2. Layout / utility
+   3. Navbar (+ posizione logo, hamburger)
+   4. Bottoni
+   5. Hero / sezioni home
+   6. Card articoli + griglia
+   7. Banner pubblicitari
+   8. Articolo singolo
+   9. Form contatti
+   10. Footer
+   11. Responsive
+   ========================================================= */
+
+/* ---------- 1. Reset base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  line-height: 1.25;
+  margin: 0 0 var(--space-4);
+}
+
+h1 { font-size: var(--fs-2xl); }
+h2 { font-size: var(--fs-xl); }
+h3 { font-size: var(--fs-lg); }
+
+p { margin: 0 0 var(--space-4); }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+/* ---------- 2. Layout / utility ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+.section {
+  padding-block: var(--space-8);
+}
+
+.section--alt {
+  background-color: var(--color-bg-alt);
+}
+
+.section-header {
+  margin-bottom: var(--space-6);
+}
+
+.section-header p {
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+.text-center { text-align: center; }
+.text-muted { color: var(--color-text-muted); }
+
+/* ---------- 3. Navbar ---------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--navbar-height);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+.navbar__logo:hover { color: var(--color-text); }
+.navbar__logo img { height: 32px; width: auto; }
+
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.navbar__link {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  font-size: var(--fs-sm);
+  padding-block: var(--space-2);
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+.navbar__link:hover,
+.navbar__link.is-active {
+  color: var(--color-text);
+  border-color: var(--color-primary);
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Selettore posizione logo (solo da tablet in su: 700px+) */
+@media (min-width: 700px) {
+  .navbar--logo-center .navbar__inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
+  /* grid-row: 1 esplicito su tutti e tre: senza, l'ordinamento automatico
+     della grid li spargerebbe su righe diverse, perché l'ordine delle
+     colonne (menu, logo, azioni) non coincide con l'ordine nel DOM
+     (logo, menu, azioni). */
+  .navbar--logo-center .navbar__menu { grid-row: 1; grid-column: 1; justify-self: start; }
+  .navbar--logo-center .navbar__logo { grid-row: 1; grid-column: 2; justify-self: center; }
+  .navbar--logo-center .navbar__actions { grid-row: 1; grid-column: 3; justify-self: end; }
+
+  .navbar--logo-right .navbar__inner {
+    flex-direction: row-reverse;
+  }
+}
+
+/* Pulsante cambio tema */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: var(--fs-md);
+  line-height: 1;
+}
+.theme-toggle:hover { border-color: var(--color-primary); }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+.hamburger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--color-text);
+  border-radius: 2px;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+.hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- 4. Bottoni ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+.btn--primary:hover { background-color: var(--color-primary-hover); color: var(--color-primary-contrast); }
+
+.btn--outline {
+  background-color: transparent;
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+.btn--outline:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+.btn--block { width: 100%; }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ---------- 5. Hero / sezioni home ---------- */
+.hero {
+  padding-block: var(--space-8);
+  text-align: center;
+}
+.hero__eyebrow {
+  display: inline-block;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-3);
+}
+.hero h1 {
+  font-size: var(--fs-3xl);
+  max-width: 760px;
+  margin-inline: auto;
+}
+.hero p.lead {
+  max-width: 640px;
+  margin-inline: auto;
+  color: var(--color-text-muted);
+  font-size: var(--fs-md);
+}
+.hero__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-7);
+  align-items: center;
+}
+.about-grid img {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---------- 6. Card articoli + griglia ---------- */
+.search-bar {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+.search-bar input[type="search"] {
+  flex: 1;
+}
+
+.filter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-6);
+  border-radius: 999px;
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  font-size: var(--fs-sm);
+}
+.filter-badge a {
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+.filter-badge a:hover {
+  color: var(--color-danger);
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.article-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.article-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.article-card__image {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  object-fit: cover;
+  background-color: var(--color-bg-alt);
+}
+
+.article-card__body {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.article-card__category {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+a.article-card__category:hover,
+a.article-header__category:hover {
+  text-decoration: underline;
+}
+
+.article-card__title {
+  font-size: var(--fs-md);
+  margin-bottom: var(--space-2);
+}
+.article-card__title a {
+  color: var(--color-text);
+}
+.article-card__title a:hover {
+  color: var(--color-primary);
+}
+
+.article-card__excerpt {
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  flex: 1;
+}
+
+.article-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.load-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-7);
+}
+
+.state-message {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: var(--space-6) 0;
+}
+
+/* ---------- 6b. Articoli in evidenza: mosaico ---------- */
+/* Il JavaScript genera sempre la stessa card (.featured-card); è la classe
+   sul contenitore (.featured-grid--mosaic / --mosaic-flip / --equal) a
+   decidere la disposizione. Su schermi piccoli tutte le varianti diventano
+   una singola colonna impilata (vedi la sezione Responsive). */
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+.featured-card {
+  position: relative;
+  display: block;
+  min-height: 280px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--color-bg-alt);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-fast);
+}
+.featured-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+.featured-card:hover .featured-card__image {
+  transform: scale(1.04);
+}
+
+.featured-card__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+
+.featured-card__overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: var(--space-5);
+  background: linear-gradient(to top, rgba(10, 12, 16, 0.88), rgba(10, 12, 16, 0.45) 60%, transparent);
+  color: #fff;
+}
+
+.featured-card__category {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+  opacity: 0.85;
+  margin-bottom: var(--space-2);
+}
+
+.featured-card__title {
+  color: #fff;
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-2);
+}
+
+.featured-card__meta {
+  font-size: var(--fs-xs);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (min-width: 1000px) {
+  /* 1 grande a sinistra (colonne 1-2, entrambe le righe) + 2 impilati a destra */
+  .featured-grid--mosaic,
+  .featured-grid--mosaic-flip {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    min-height: 520px;
+  }
+  .featured-grid--mosaic .featured-card:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; }
+  .featured-grid--mosaic .featured-card:nth-child(2) { grid-column: 3 / 5; grid-row: 1; }
+  .featured-grid--mosaic .featured-card:nth-child(3) { grid-column: 3 / 5; grid-row: 2; }
+
+  /* Specchiato: grande a destra */
+  .featured-grid--mosaic-flip .featured-card:nth-child(1) { grid-column: 3 / 5; grid-row: 1 / 3; }
+  .featured-grid--mosaic-flip .featured-card:nth-child(2) { grid-column: 1 / 3; grid-row: 1; }
+  .featured-grid--mosaic-flip .featured-card:nth-child(3) { grid-column: 1 / 3; grid-row: 2; }
+
+  .featured-grid--mosaic .featured-card:nth-child(1) .featured-card__title,
+  .featured-grid--mosaic-flip .featured-card:nth-child(1) .featured-card__title {
+    font-size: var(--fs-2xl);
+  }
+
+  /* Tutti gli articoli della stessa dimensione, in fila (si adatta a qualunque numero) */
+  .featured-grid--equal {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* ---------- 7. Banner pubblicitari ---------- */
+/* .ad-banner + un modificatore di formato (--leaderboard, --rectangle, ecc.)
+   definisce SEMPRE la stessa dimensione, sia sul placeholder vuoto (un div,
+   tratteggiato, mostrato finché lo spazio non è venduto) sia sul banner
+   vero (un link <a class="ad-banner ad-banner--..."> con dentro l'<img>
+   del cliente): stessa classe, stesso formato, risultato coerente in
+   tutto il sito. Vedi il README per l'esempio pronto da incollare. */
+.ad-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  background-color: var(--ad-bg);
+  border: 1px dashed var(--ad-border);
+  border-radius: var(--radius-sm);
+  color: var(--ad-text);
+  font-size: var(--fs-xs);
+  text-align: center;
+  overflow: hidden;
+}
+
+.ad-banner__label {
+  padding: var(--space-2);
+}
+
+/* Banner attivo: l'elemento .ad-banner è direttamente un <a> con dentro l'immagine */
+a.ad-banner {
+  display: block;
+  padding: 0;
+  border-style: solid;
+  border-color: var(--color-border);
+  background-color: transparent;
+  transition: opacity var(--transition-fast), box-shadow var(--transition-fast);
+}
+a.ad-banner:hover {
+  opacity: 0.9;
+  box-shadow: var(--shadow-sm);
+}
+a.ad-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Formati IAB standard, in px fissi da desktop, si adattano da mobile (vedi responsive) */
+.ad-banner--leaderboard   { width: 728px; max-width: 100%; height: 90px; }
+.ad-banner--large-rect    { width: 336px; max-width: 100%; height: 280px; }
+.ad-banner--rectangle     { width: 300px; max-width: 100%; height: 250px; }
+.ad-banner--skyscraper    { width: 160px; max-width: 100%; height: 600px; }
+.ad-banner--mobile        { width: 320px; max-width: 100%; height: 50px; }
+
+/* Banner "a due formati": aggiungi questa classe in più, insieme al formato,
+   a DUE banner distinti messi nello stesso punto della pagina (uno pensato
+   per desktop/tablet, uno per mobile) per farne comparire sempre uno solo
+   in base alla larghezza dello schermo. Se invece usi un solo banner senza
+   queste classi, si adatta comunque da solo su mobile (vedi sezione Responsive). */
+.ad-banner.ad-banner--mobile-only { display: none; }
+
+.ad-slot {
+  margin-block: var(--space-7);
+  display: flex;
+  justify-content: center;
+}
+
+/* ---------- 8. Articolo singolo ---------- */
+.article-header {
+  padding-block: var(--space-7) var(--space-5);
+}
+.article-header__category {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.article-header h1 {
+  margin-top: var(--space-3);
+}
+.article-header__meta {
+  display: flex;
+  gap: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+}
+
+.article-cover {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-6);
+}
+
+.article-content {
+  max-width: 760px;
+  margin-inline: auto;
+  font-size: var(--fs-md);
+}
+.article-content h2 { margin-top: var(--space-7); }
+.article-content h3 { margin-top: var(--space-6); }
+.article-content p { margin-bottom: var(--space-5); color: var(--color-text); }
+.article-content img {
+  border-radius: var(--radius-md);
+  margin-block: var(--space-5);
+}
+.article-content blockquote {
+  margin: var(--space-5) 0;
+  padding: var(--space-4) var(--space-5);
+  border-left: 4px solid var(--color-primary);
+  background-color: var(--color-bg-alt);
+  color: var(--color-text-muted);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.article-content pre {
+  background-color: var(--color-bg-alt);
+  padding: var(--space-4);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+}
+.article-content code {
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 0.9em;
+}
+.article-content ul,
+.article-content ol {
+  margin: 0 0 var(--space-5);
+  padding-left: var(--space-5);
+}
+.article-content li { margin-bottom: var(--space-2); list-style: disc; }
+
+/* Pulsanti di condivisione */
+.share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 760px;
+  margin: var(--space-6) auto;
+}
+.share-buttons__label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-right: var(--space-1);
+}
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+.share-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Articoli correlati */
+.related-articles {
+  max-width: 900px;
+  margin-inline: auto;
+  padding-top: var(--space-7);
+  margin-top: var(--space-7);
+  border-top: 1px solid var(--color-border);
+}
+.related-articles h2 {
+  font-size: var(--fs-lg);
+}
+.related-articles .articles-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ---------- 9. Form contatti ---------- */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-7);
+}
+
+.contact-info__item {
+  display: flex;
+  gap: var(--space-3);
+  padding-bottom: var(--space-5);
+  margin-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+.contact-info__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.form-group {
+  margin-bottom: var(--space-5);
+}
+.form-group label {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+.form-control {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-base);
+  font-family: inherit;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast);
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+textarea.form-control {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.form-note {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-2);
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+.form-checkbox input {
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.form-feedback {
+  display: none;
+  padding: var(--space-4);
+  margin-bottom: var(--space-5);
+  border-radius: var(--radius-sm);
+  background-color: color-mix(in srgb, var(--color-success) 12%, var(--color-surface));
+  border: 1px solid var(--color-success);
+  color: var(--color-success);
+  font-size: var(--fs-sm);
+}
+
+/* ---------- 10. Footer ---------- */
+.footer {
+  background-color: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-7) var(--space-5);
+  margin-top: var(--space-8);
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+.footer__title {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-4);
+}
+.footer__links li { margin-bottom: var(--space-2); }
+.footer__links a { color: var(--color-text-muted); font-size: var(--fs-sm); }
+.footer__links a:hover { color: var(--color-primary); }
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  flex-wrap: wrap;
+}
+.footer__social {
+  display: flex;
+  gap: var(--space-3);
+}
+
+/* ---------- 11. Pulsante "torna su" e pagina 404 ---------- */
+.back-to-top {
+  position: fixed;
+  right: var(--space-5);
+  bottom: var(--space-5);
+  z-index: 90;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-md);
+  font-size: var(--fs-md);
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.error-page {
+  text-align: center;
+  padding-block: var(--space-8);
+}
+.error-page__code {
+  font-size: 6rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: var(--space-4);
+}
+.error-page p {
+  color: var(--color-text-muted);
+  max-width: 480px;
+  margin-inline: auto;
+}
+.error-page .btn {
+  margin-top: var(--space-5);
+}
+
+/* ---------- 11b. Banner cookie ---------- */
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(100%);
+  transition: transform var(--transition-base);
+}
+.cookie-banner.is-visible {
+  transform: translateY(0);
+}
+.cookie-banner__inner {
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding: var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.cookie-banner__text {
+  flex: 1 1 320px;
+  margin: 0;
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+.cookie-banner__actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+/* evita che il pulsante "torna su" si sovrapponga al banner cookie ancora aperto */
+body:has(.cookie-banner.is-visible) .back-to-top {
+  bottom: 96px;
+}
+
+/* ---------- 12. Responsive ---------- */
+@media (max-width: 999px) {
+  .articles-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { grid-template-columns: 1fr; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 699px) {
+  :root { --navbar-height: 60px; }
+
+  .hamburger { display: flex; }
+
+  .navbar__menu {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-surface);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--space-4) var(--space-5);
+    transform: translateX(100%);
+    transition: transform var(--transition-base);
+    overflow-y: auto;
+  }
+  .navbar__menu.is-open {
+    transform: translateX(0);
+  }
+  .navbar__link {
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    width: 100%;
+  }
+
+  .hero h1 { font-size: var(--fs-2xl); }
+  .articles-grid { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr; gap: var(--space-5); }
+  .footer__bottom { flex-direction: column; align-items: flex-start; }
+
+  .ad-banner--leaderboard,
+  .ad-banner--large-rect,
+  .ad-banner--rectangle,
+  .ad-banner--skyscraper {
+    width: 100%;
+    height: 100px;
+  }
+
+  /* Coppia desktop/mobile: sotto i 700px si scambiano */
+  .ad-banner.ad-banner--desktop-only { display: none; }
+  .ad-banner.ad-banner--mobile-only { display: flex; }
+}

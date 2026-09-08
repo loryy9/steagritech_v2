@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina non trovata · Il Mio Blog</title>
+  <meta name="robots" content="noindex">
+
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="navbar navbar--logo-left">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <img src="assets/logo.svg" alt="Logo del blog">
+        <span>Il Mio Blog</span>
+      </a>
+
+      <nav class="navbar__menu" data-navbar-menu>
+        <a href="index.html" class="navbar__link">Home</a>
+        <a href="articles.html" class="navbar__link">Articoli</a>
+        <a href="contact.html" class="navbar__link">Contatti</a>
+      </nav>
+
+      <div class="navbar__actions">
+        <button class="theme-toggle" data-theme-toggle aria-label="Cambia tema">🌙</button>
+        <button class="hamburger" data-hamburger aria-label="Apri il menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container error-page">
+      <div class="error-page__code">404</div>
+      <h1>Pagina non trovata</h1>
+      <p>La pagina che cerchi non esiste più, è stata spostata, oppure l'indirizzo contiene un errore.</p>
+      <a href="index.html" class="btn btn--primary">Torna alla home</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="navbar__logo" style="margin-bottom: var(--space-3);">
+            <img src="assets/logo.svg" alt="Logo del blog">
+            <span>Il Mio Blog</span>
+          </div>
+          <p class="text-muted">Boilerplate per blog personale o aziendale: colori, tema e contenuti gestibili in pochi minuti.</p>
+        </div>
+        <div>
+          <div class="footer__title">Naviga</div>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="articles.html">Articoli</a></li>
+            <li><a href="contact.html">Contatti</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__title">Social</div>
+          <ul class="footer__links">
+            <li><a href="#">Twitter / X</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__title">Legale</div>
+          <ul class="footer__links">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="cookie.html">Cookie Policy</a></li>
+            <li><a href="#" data-manage-cookies>Gestisci cookie</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Il Mio Blog. Tutti i diritti riservati.</span>
+        <span>Realizzato con HTML, CSS e JavaScript.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/cookie-consent.js"></script>
+</body>
+</html>

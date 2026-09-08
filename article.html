@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Articolo · Il Mio Blog</title>
+
+  <!-- Sostituisci https://www.tuo-dominio.it con il tuo dominio reale prima di pubblicare.
+       I meta tag qui sotto sono generici: js/article.js li aggiorna via JavaScript con i
+       dati dell'articolo aperto, ma i bot di anteprima di WhatsApp/Facebook/X non eseguono
+       JavaScript e vedranno questi valori generici (vedi il README per i dettagli). -->
+  <link rel="canonical" href="https://www.tuo-dominio.it/article.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Il Mio Blog">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:title" content="Articolo · Il Mio Blog">
+  <meta property="og:description" content="Guide pratiche e articoli su sviluppo web, design e strumenti digitali.">
+  <meta property="og:url" content="https://www.tuo-dominio.it/article.html">
+  <meta property="og:image" content="https://placehold.co/1200x630/2f6fed/ffffff?text=Il+Mio+Blog">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Articolo · Il Mio Blog">
+  <meta name="twitter:description" content="Guide pratiche e articoli su sviluppo web, design e strumenti digitali.">
+  <meta name="twitter:image" content="https://placehold.co/1200x630/2f6fed/ffffff?text=Il+Mio+Blog">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="navbar navbar--logo-left">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <img src="assets/logo.svg" alt="Logo del blog">
+        <span>Il Mio Blog</span>
+      </a>
+
+      <nav class="navbar__menu" data-navbar-menu>
+        <a href="index.html" class="navbar__link">Home</a>
+        <a href="articles.html" class="navbar__link">Articoli</a>
+        <a href="contact.html" class="navbar__link">Contatti</a>
+      </nav>
+
+      <div class="navbar__actions">
+        <button class="theme-toggle" data-theme-toggle aria-label="Cambia tema">🌙</button>
+        <button class="hamburger" data-hamburger aria-label="Apri il menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main data-article-root>
+
+    <div class="container">
+      <header class="article-header">
+        <a class="article-header__category" data-article-category href="articles.html">Blog</a>
+        <h1 data-article-title>Caricamento…</h1>
+        <div class="article-header__meta">
+          <span data-article-author></span>
+          <span>&middot;</span>
+          <span data-article-date></span>
+          <span>&middot;</span>
+          <span data-article-reading-time></span>
+        </div>
+      </header>
+
+      <img class="article-cover" data-article-cover src="" alt="" style="display:none;">
+
+      <!-- Banner pubblicitario dentro l'articolo (vedi esempio nel README) -->
+      <div class="ad-slot">
+        <div class="ad-banner ad-banner--rectangle">
+          <span class="ad-banner__label">Spazio pubblicitario 300×250</span>
+        </div>
+      </div>
+
+      <article class="article-content" data-article-content>
+        <p class="text-muted">Caricamento del contenuto…</p>
+      </article>
+
+      <div class="share-buttons" data-share-buttons></div>
+
+      <div class="load-more-wrap">
+        <a href="articles.html" class="btn btn--outline">&larr; Torna agli articoli</a>
+      </div>
+
+      <!-- Banner pubblicitario a fine articolo (vedi esempio nel README) -->
+      <div class="ad-slot">
+        <div class="ad-banner ad-banner--leaderboard">
+          <span class="ad-banner__label">Spazio pubblicitario 728×90</span>
+        </div>
+      </div>
+
+      <section class="related-articles" data-related-articles style="display:none;">
+        <h2>Ti potrebbe interessare anche</h2>
+        <div class="articles-grid" data-related-articles-list></div>
+      </section>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="navbar__logo" style="margin-bottom: var(--space-3);">
+            <img src="assets/logo.svg" alt="Logo del blog">
+            <span>Il Mio Blog</span>
+          </div>
+          <p class="text-muted">Boilerplate per blog personale o aziendale: colori, tema e contenuti gestibili in pochi minuti.</p>
+        </div>
+        <div>
+          <div class="footer__title">Naviga</div>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="articles.html">Articoli</a></li>
+            <li><a href="contact.html">Contatti</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__title">Social</div>
+          <ul class="footer__links">
+            <li><a href="#">Twitter / X</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__title">Legale</div>
+          <ul class="footer__links">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="cookie.html">Cookie Policy</a></li>
+            <li><a href="#" data-manage-cookies>Gestisci cookie</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Il Mio Blog. Tutti i diritti riservati.</span>
+        <span>Realizzato con HTML, CSS e JavaScript.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/cookie-consent.js"></script>
+  <script src="content/articles-data.js"></script>
+  <script src="js/article.js"></script>
+  <script src="js/ads.js"></script>
+</body>
+</html>
