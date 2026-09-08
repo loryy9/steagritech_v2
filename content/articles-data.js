@@ -16,7 +16,7 @@ window.BLOG_ARTICLES = [
     category: "Prova",
 
     date: "2026-09-01",
-    image: "assets/KRONE_Swativo_T_1040_Pro_field_operation_2-1-1536x821.webp",
+    image: "../assets/KRONE_Swativo_T_1040_Pro_field_operation_2-1-1536x821.webp",
     featured: true,
     content: `<p>Benvenuti su questo spazio! Abbiamo creato questo blog per condividere guide pratiche, riflessioni e piccoli trucchi su sviluppo web, design e strumenti digitali.</p>
 
@@ -41,7 +41,7 @@ window.BLOG_ARTICLES = [
     category: "Prova",
 
     date: "2026-09-01",
-    image: "assets/KRONE_Swativo_T_1040_Pro_field_operation_2-1-1536x821.webp",
+    image: "../assets/KRONE_Swativo_T_1040_Pro_field_operation_2-1-1536x821.webp",
     featured: true,
     content: `<p>Benvenuti su questo spazio! Abbiamo creato questo blog per condividere guide pratiche, riflessioni e piccoli trucchi su sviluppo web, design e strumenti digitali.</p>
 
@@ -66,7 +66,7 @@ window.BLOG_ARTICLES = [
     category: "Prova",
 
     date: "2026-09-01",
-    image: "assets/KRONE_Swativo_T_1040_Pro_field_operation_2-1-1536x821.webp",
+    image: "../assets/KRONE_Swativo_T_1040_Pro_field_operation_2-1-1536x821.webp",
     featured: true,
     content: `<p>Benvenuti su questo spazio! Abbiamo creato questo blog per condividere guide pratiche, riflessioni e piccoli trucchi su sviluppo web, design e strumenti digitali.</p>
 
