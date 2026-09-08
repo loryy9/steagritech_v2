@@ -139,6 +139,23 @@ ul { margin: 0; padding: 0; list-style: none; }
   border-color: var(--color-primary);
 }
 
+.navbar__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-bottom: 2px solid transparent;
+}
+
+.navbar__social-logo {
+  display: block;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
 .categorie {
   border-top: 1px solid var(--color-border);
 }
@@ -153,6 +170,18 @@ ul { margin: 0; padding: 0; list-style: none; }
   scrollbar-width: none;
 }
 .categorie__inner::-webkit-scrollbar { display: none; }
+
+.categorie--left .categorie__inner {
+  justify-content: flex-start;
+}
+
+.categorie--center .categorie__inner {
+  justify-content: center;
+}
+
+.categorie--right .categorie__inner {
+  justify-content: flex-end;
+}
 
 .categorie__link {
   flex: 0 0 auto;
