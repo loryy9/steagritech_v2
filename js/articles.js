@@ -31,17 +31,48 @@
     return div.innerHTML;
   }
 
-  function cardTemplate(article) {
+  function metaText(article) {
+    var text = formatDate(article.date);
+    if (article.readTime) {
+      text += " &middot; " + escapeHtml(article.readTime);
+    }
+    return text;
+  }
+
+  /* Inquadratura personalizzata dell'immagine in anteprima (solo nelle
+     card: nell'articolo aperto si vede sempre l'immagine intera).
+     - article.imagePosition: valore CSS object-position (es. "80% 30%"
+       oppure "right top") — sposta il punto di inquadratura, utile se il
+       soggetto non è al centro della foto.
+     - article.imageZoom: numero > 1 (es. 1.2) per stringere l'inquadratura
+       ("zoomare") quando il soggetto è comunque troppo piccolo/lontano.
+     Vedi content/articles-data.js per un esempio commentato. */
+  function imageStyleAttr(article) {
+    var decl = [];
+    if (article.imagePosition) {
+      decl.push("object-position:" + article.imagePosition);
+    }
+    if (article.imageZoom && article.imageZoom !== 1) {
+      decl.push("transform:scale(" + article.imageZoom + ")");
+    }
+    return decl.length ? ' style="' + decl.join(";") + '"' : "";
+  }
+
+  function cardTemplate(article, sizeClass, showArrow) {
     var img = article.image
       ? '<img class="article-card__image" src="' +
         escapeHtml(article.image) +
         '" alt="' +
         escapeHtml(article.title) +
-        '" loading="lazy">'
+        '"' +
+        imageStyleAttr(article) +
+        ' loading="lazy">'
       : '<div class="article-card__image"></div>';
 
     return (
-      '<article class="article-card">' +
+      '<article class="article-card' +
+      (sizeClass ? " article-card--" + sizeClass : "") +
+      '">' +
       img +
       '<div class="article-card__body">' +
       '<a class="article-card__category" href="articles.html?category=' +
@@ -58,20 +89,19 @@
       escapeHtml(article.excerpt || "") +
       "</p>" +
       '<div class="article-card__meta">' +
-      "</span>" +
-      "<span>&middot;</span>" +
       "<span>" +
-      formatDate(article.date) +
+      metaText(article) +
       "</span>" +
+      (showArrow === false ? "" : '<span class="article-card__arrow" aria-hidden="true">&rarr;</span>') +
       "</div>" +
       "</div>" +
       "</article>"
     );
   }
 
-  function featuredCardTemplate(article) {
+  function featuredCardTemplate(article, sizeClass, showArrow) {
     var img = article.image
-      ? '<img class="featured-card__image" src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '" loading="lazy">'
+      ? '<img class="featured-card__image" src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + ' loading="lazy">'
       : "";
 
     return (
@@ -81,11 +111,73 @@
         '<div class="featured-card__overlay">' +
           '<span class="featured-card__category">' + escapeHtml(article.category || "Blog") + "</span>" +
           '<h3 class="featured-card__title">' + escapeHtml(article.title) + "</h3>" +
-          '<div class="featured-card__meta">' + formatDate(article.date) + "</div>" +
+          '<div class="featured-card__meta">' + metaText(article) + "</div>" +
+        "</div>" +
+        (showArrow === false ? "" : '<span class="featured-card__arrow" aria-hidden="true">&rarr;</span>') +
+      "</a>"
+    );
+  }
+
+  function glassCardTemplate(article, sizeClass, showArrow) {
+    var isLarge = sizeClass === "lg";
+    var img = article.image
+      ? '<img src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + ' loading="lazy">'
+      : "";
+
+    return (
+      '<article class="glass-card' + (sizeClass ? " glass-card--" + sizeClass : "") + '">' +
+        '<div class="glass-card__media">' +
+          img +
+        "</div>" +
+        '<div class="glass-card__panel">' +
+          '<a class="glass-card__category" href="articles.html?category=' + encodeURIComponent(article.category || "Blog") + '">' +
+            escapeHtml(article.category || "Blog") +
+          "</a>" +
+          '<h3 class="glass-card__title"><a href="article.html?slug=' + encodeURIComponent(article.slug) + '">' +
+            escapeHtml(article.title) +
+          "</a></h3>" +
+          (isLarge && article.excerpt ? '<p class="glass-card__excerpt">' + escapeHtml(article.excerpt) + "</p>" : "") +
+          '<div class="glass-card__meta">' +
+            "<span>" + metaText(article) + "</span>" +
+            (showArrow === false ? "" : '<span class="glass-card__arrow" aria-hidden="true">&rarr;</span>') +
+          "</div>" +
+        "</div>" +
+      "</article>"
+    );
+  }
+
+  function compactCardTemplate(article, showArrow) {
+    var img = article.image
+      ? '<div class="compact-card__image"><img src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + ' loading="lazy"></div>'
+      : '<div class="compact-card__image"></div>';
+
+    return (
+      '<a class="compact-card" href="article.html?slug=' + encodeURIComponent(article.slug) + '">' +
+        img +
+        '<div class="compact-card__body">' +
+          '<span class="compact-card__category">' + escapeHtml(article.category || "Blog") + "</span>" +
+          '<h4 class="compact-card__title">' + escapeHtml(article.title) + "</h4>" +
+          '<div class="compact-card__meta">' +
+            "<span>" + metaText(article) + "</span>" +
+            (showArrow === false ? "" : '<span class="compact-card__arrow" aria-hidden="true">&rarr;</span>') +
+          "</div>" +
         "</div>" +
       "</a>"
     );
   }
+
+  /* Mappa nome stile (usato in data-styles) -> funzione che genera l'HTML
+     della card. Per aggiungere uno stile di card nuovo, basta scrivere la
+     funzione template e registrarla qui: sarà subito utilizzabile in
+     qualunque combinazione di layout, senza toccare altro codice. */
+  var CARD_STYLES = {
+    standard: cardTemplate,
+    overlay: featuredCardTemplate,
+    glass: glassCardTemplate,
+    compact: function (article, sizeClass, showArrow) {
+      return compactCardTemplate(article, showArrow);
+    },
+  };
 
   function sortByDateDesc(list) {
     return list.slice().sort(function (a, b) {
@@ -97,11 +189,51 @@
     return Array.isArray(window.BLOG_ARTICLES) ? window.BLOG_ARTICLES : [];
   }
 
-  /* ---------- Home: articoli in evidenza ---------- */
+  /* Stessa soglia usata dal CSS per far scattare i mosaici (vedi
+     css/style.css, "@media (min-width: 1000px)"): sotto ai 1000px la
+     struttura mosaico torna sempre una singola colonna impilata, quindi
+     su mobile ha senso scegliere anche uno stile di card diverso. */
+  var DESKTOP_QUERY = "(min-width: 1000px)";
+
+  /* ---------- Home: articoli in evidenza ----------
+     Il contenitore [data-featured] decide layout e card in modo dichiarativo:
+       - class sul contenitore (es. featured-grid--mosaic, --mosaic-1-4,
+         --equal...) sceglie la STRUTTURA (dove va ogni slot) — conta solo
+         da desktop (>= 1000px): sotto, è sempre una colonna impilata;
+       - data-styles="glass,standard,standard" sceglie lo STILE di ogni
+         slot, nello stesso ordine (uno dei nomi in CARD_STYLES);
+       - data-sizes="lg,,"  (opzionale) applica un modificatore di
+         dimensione allo slot corrispondente (per ora solo "lg");
+       - data-arrow="false" (opzionale) nasconde la freccina "vai
+         all'articolo" su tutte le card del contenitore (di default è
+         sempre visibile);
+       - data-styles-mobile / data-sizes-mobile / data-arrow-mobile /
+         data-featured-mobile
+         (tutti opzionali) sostituiscono le versioni sopra SOLO sotto i
+         1000px — utile per mostrare, ad esempio, un mosaico "glass +
+         standard" da desktop e solo card "glass" impilate da mobile.
+         Se non li scrivi, sotto i 1000px si usano semplicemente le
+         stesse impostazioni desktop, impilate in colonna.
+     Se data-styles non è presente, il comportamento è quello originale:
+     tutte le card in stile "overlay" (com'era prima su questa pagina). */
   function renderFeatured() {
     var container = document.querySelector("[data-featured]");
     if (!container) return;
-    var limit = parseInt(container.getAttribute("data-featured"), 10) || 3;
+
+    var isMobile = !window.matchMedia(DESKTOP_QUERY).matches;
+    var useMobile = isMobile && container.hasAttribute("data-styles-mobile");
+
+    var stylesAttr = container.getAttribute(useMobile ? "data-styles-mobile" : "data-styles");
+    var styles = stylesAttr
+      ? stylesAttr.split(",").map(function (s) { return s.trim(); })
+      : null;
+    var sizesAttr = container.getAttribute(useMobile ? "data-sizes-mobile" : "data-sizes") || "";
+    var sizes = sizesAttr.split(",").map(function (s) { return s.trim(); });
+
+    var showArrow = container.getAttribute(useMobile ? "data-arrow-mobile" : "data-arrow") !== "false";
+
+    var countAttr = container.getAttribute(useMobile ? "data-featured-mobile" : "data-featured");
+    var limit = parseInt(countAttr, 10) || (styles ? styles.length : 3);
 
     var articles = getArticles();
     if (!articles.length) {
@@ -113,9 +245,35 @@
     var featured = articles.filter(function (a) {
       return a.featured;
     });
-    var pool = featured.length ? featured : articles;
+    var pool = featured.length >= limit ? featured : articles;
     var items = sortByDateDesc(pool).slice(0, limit);
-    container.innerHTML = items.map(featuredCardTemplate).join("");
+
+    container.innerHTML = items
+      .map(function (article, i) {
+        var styleName = styles ? styles[i] || styles[styles.length - 1] : "overlay";
+        var template = CARD_STYLES[styleName] || CARD_STYLES.overlay;
+        return template(article, sizes[i] || "", showArrow);
+      })
+      .join("");
+  }
+
+  /* Se la Home usa impostazioni diverse per mobile (data-styles-mobile),
+     ri-renderizza quando si attraversa la soglia dei 1000px (es. si
+     ruota il telefono, o si ridimensiona la finestra) così il layout
+     resta sempre coerente senza dover ricaricare la pagina. */
+  function initFeaturedResponsive() {
+    var container = document.querySelector("[data-featured]");
+    if (!container || !container.hasAttribute("data-styles-mobile")) return;
+
+    var query = window.matchMedia(DESKTOP_QUERY);
+    var handler = function () {
+      renderFeatured();
+    };
+    if (query.addEventListener) {
+      query.addEventListener("change", handler);
+    } else if (query.addListener) {
+      query.addListener(handler); // fallback per Safari meno recenti
+    }
   }
 
   /* ---------- Pagina articoli: elenco, ricerca, filtro categoria, "carica altri" ---------- */
@@ -130,6 +288,7 @@
     var allArticles = sortByDateDesc(getArticles());
     var visibleCount = 0;
     var activeCategory = new URLSearchParams(window.location.search).get("category") || "";
+    var showArrow = container.getAttribute("data-arrow") !== "false";
 
     function matches(article, query) {
       if (!query) return true;
@@ -186,7 +345,10 @@
     function renderNextBatch(results) {
       results = results || filteredArticles();
       var nextItems = results.slice(visibleCount, visibleCount + STEP);
-      container.insertAdjacentHTML("beforeend", nextItems.map(cardTemplate).join(""));
+      container.insertAdjacentHTML(
+        "beforeend",
+        nextItems.map(function (article) { return cardTemplate(article, "", showArrow); }).join("")
+      );
       visibleCount += nextItems.length;
 
       var remaining = results.length - visibleCount;
@@ -230,6 +392,7 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     renderFeatured();
+    initFeaturedResponsive();
     initArticleList();
   });
 })();

@@ -20,6 +20,8 @@ npx serve .
 
 ```
 index.html          Home (hero, chi siamo, articoli in evidenza)
+index1.html ... index5.html   Varianti demo della Home, per confrontare stili/layout delle card
+                     (vedi "Stili e layout delle card in evidenza" più sotto)
 articles.html        Elenco articoli con ricerca, filtro categoria e "carica altri"
 article.html          Pagina di un singolo articolo (?slug=...), condivisione, articoli correlati
 contact.html          Pagina contatti con form (demo, senza backend) e checkbox privacy
@@ -34,7 +36,7 @@ css/variables.css      Tutte le variabili di tema (colori, font, spazi, tema scu
 css/style.css           Stili del sito, organizzato a sezioni commentate
 
 js/main.js              Menu hamburger + cambio tema + link attivo + pulsante "torna su"
-js/articles.js           Articoli in evidenza / elenco con ricerca, filtro categoria, paginazione
+js/articles.js           Stili/layout delle card in evidenza (CARD_STYLES) + elenco con ricerca, filtro categoria, paginazione
 js/article.js            Articolo singolo: contenuto, condivisione, tempo di lettura, correlati
 js/contact.js            Gestione demo del form contatti
 js/ads.js                Tracciamento dei click sui banner pubblicitari (trackBannerClick)
@@ -57,13 +59,27 @@ Apri `content/articles-data.js`: è un array `window.BLOG_ARTICLES`. Copia uno d
   excerpt: "Breve riassunto mostrato nelle card.",
   category: "Sviluppo",
   date: "2026-09-08",
+  readTime: "5 min di lettura", // opzionale: se lo scrivi a mano compare nelle card accanto alla data
   image: "https://.../immagine.jpg",
+  imagePosition: "75% 30%", // opzionale: inquadratura dell'immagine nelle card, vedi sotto
+  imageZoom: 1.15, // opzionale: "stringe" l'inquadratura, vedi sotto
   featured: false,
   content: `<p>Qui va il contenuto HTML dell'articolo: paragrafi, titoli h2/h3, immagini, liste, blockquote...</p>`
 }
 ```
 
 Nota le virgolette **backtick** (`` ` ``) attorno al campo `content`: permettono di scrivere HTML su più righe. Ricorda la virgola `,` tra un oggetto e il successivo nell'array.
+
+Il campo `readTime` è facoltativo e scritto a mano (non calcolato): se lo ometti, le card mostrano solo la data. Nella pagina dell'articolo singolo il tempo di lettura *effettivo* viene invece calcolato automaticamente dal testo (vedi "Condivisione, tempo di lettura e articoli correlati" più sotto) — sono due cose indipendenti.
+
+### Inquadratura dell'immagine nelle card
+
+`imagePosition` e `imageZoom` sono entrambi facoltativi e riguardano **solo l'anteprima nelle card**: aprendo l'articolo (`article.html`) si vede sempre la foto intera, senza ritagli. Servono per i casi in cui il soggetto della foto non è al centro e il ritaglio automatico delle card (che riempiono sempre lo spazio disponibile, tagliando i bordi) rischia di escluderlo:
+
+- **`imagePosition`** — un valore CSS `object-position` (es. `"75% 30%"`, oppure parole chiave come `"right top"`); sposta il punto su cui si concentra il ritaglio. Default: centrato.
+- **`imageZoom`** — un numero maggiore di 1 (es. `1.15` = 15% più vicino) per stringere l'inquadratura quando, anche riposizionandola, il soggetto resta troppo piccolo o lontano.
+
+Il modo più semplice per trovare i valori giusti è per tentativi: apri la Home o `articles.html` nel browser, prova un valore, ricarica la pagina, aggiusta finché l'inquadratura non ti convince. Trovi un esempio già impostato sul secondo articolo di `content/articles-data.js`.
 
 Fatto: l'articolo comparirà automaticamente nella pagina Articoli (in ordine di data), nella ricerca, nel filtro per categoria, tra gli articoli correlati di articoli della stessa categoria e, se `featured: true`, anche tra gli articoli in evidenza in Home (max 3 di default, modificabile con l'attributo `data-featured="N"` sull'elemento in `index.html`).
 
@@ -80,23 +96,81 @@ Tutto è in `css/variables.css`:
 
 Basta cambiare i valori esadecimali per rifare completamente la palette. Il pulsante 🌙/☀️ in navbar cambia tema e salva la scelta dell'utente in `localStorage`; se l'utente non ha mai scelto, il sito segue automaticamente il tema del sistema operativo.
 
-## Layout degli articoli in evidenza (Home)
+## Stili e layout delle card in evidenza (Home)
 
-La sezione "Articoli in evidenza" in `index.html` usa lo stesso meccanismo della posizione del logo: cambia solo la classe sul contenitore, il JavaScript resta identico. Tre opzioni:
-
-| Classe                       | Aspetto                                                                            |
-| ---------------------------- | ---------------------------------------------------------------------------------- |
-| `featured-grid--mosaic`      | 1 articolo grande a sinistra + 2 impilati a destra (default)                       |
-| `featured-grid--mosaic-flip` | Come sopra, specchiato: grande a destra                                            |
-| `featured-grid--equal`       | Tutti gli articoli della stessa dimensione, in fila (si adatta a qualsiasi numero) |
+La sezione "Articoli in evidenza" (usata in `index.html` e nelle varianti demo `index1.html`...`index5.html`) è completamente componibile: **struttura** (come sono disposte le card) e **stile** (che aspetto ha ogni singola card) sono due scelte indipendenti, decise entrambe sullo stesso `<div>` senza toccare il JavaScript:
 
 ```html
-<div class="featured-grid featured-grid--mosaic" data-featured="3"></div>
+<div
+  class="featured-grid featured-grid--mosaic"
+  data-featured="3"
+  data-styles="glass,standard,standard"
+  data-sizes="lg,,"
+>
+  <p class="state-message">Caricamento articoli…</p>
+</div>
 ```
 
-Le varianti "mosaico" sono pensate per esattamente 3 articoli (il primo diventa quello grande); `featured-grid--equal` invece si adatta a qualunque numero, se cambi `data-featured="N"`. Su schermi sotto i 1000px tutte le varianti diventano una singola colonna impilata, per restare leggibili su tablet e mobile.
+- **classe sul contenitore** → la struttura (dove va ogni articolo)
+- **`data-styles`** → lo stile di ogni articolo, nello stesso ordine, separati da virgola
+- **`data-sizes`** → (opzionale) quale slot è "grande" (`lg`); lascialo vuoto (`,,`) per gli altri
+- **`data-featured`** → quanti articoli mostrare in tutto
 
-**Quali articoli compaiono**: quelli con `featured: true` in `content/articles-data.js` (in ordine di data, il più recente per primo — quindi il primo che marchi `featured: true` più recente diventa quello "grande" nel mosaico); se non ne marchi nessuno, vengono mostrati semplicemente gli ultimi 3 pubblicati.
+### Stili di card disponibili (`data-styles`)
+
+| Nome       | Aspetto                                                                             |
+| ---------- | ------------------------------------------------------------------------------------ |
+| `standard` | Immagine sopra, titolo e sommario sotto — lo stesso stile della pagina Articoli      |
+| `overlay`  | Immagine a piena card, titolo e categoria scritti sopra (in basso, su sfondo scuro)  |
+| `glass`    | "Liquid glass": immagine + un pannello semi-trasparente sfocato che si sovrappone al bordo inferiore della foto |
+| `compact`  | Miniatura piccola a sinistra + titolo e data a destra, pensata per elenchi verticali ("ultimi articoli") |
+
+### Strutture disponibili (classe sul contenitore)
+
+| Classe                          | Aspetto                                                                    |
+| -------------------------------- | --------------------------------------------------------------------------- |
+| `featured-grid--equal`           | Tutte le card della stessa larghezza E altezza, in fila (si adatta a qualsiasi numero); un titolo più lungo non allunga la card ma solo il suo contenuto interno (nella glass card, ad esempio, il pannello di vetro — che sporge sopra il bordo inferiore della foto — si allarga, e la foto si restringe di conseguenza) — mai tagli col "..." |
+| `featured-grid--mosaic`          | 1 articolo grande a sinistra + 2 impilati a destra                        |
+| `featured-grid--mosaic-flip`     | Come sopra, specchiato: grande a destra                                   |
+| `featured-grid--mosaic-1-4`      | 1 articolo grande a sinistra (a tutta altezza) + 4 piccoli impilati a destra, tipo elenco "ultimi articoli" |
+| `featured-grid--mosaic-1-4-flip` | Come sopra, specchiato: grande a destra, elenco a sinistra                 |
+
+Le strutture "mosaico" sono pensate per esattamente 3 (o 5, per la `-1-4`) articoli, con il primo slot come quello "grande"; `featured-grid--equal` invece si adatta a qualunque numero, se cambi `data-featured="N"` (e allunghi di conseguenza `data-styles`). Su schermi sotto i 1000px tutte le varianti diventano una singola colonna impilata, per restare leggibili su tablet e mobile — e nei due slot "mosaico" piccoli, sotto i 1000px riappare anche il sommario completo (nel mosaico desktop viene nascosto per mancanza di spazio verticale).
+
+**Per inventare una nuova combinazione**: scegli una riga della prima tabella per ogni slot (`data-styles`) e una struttura dalla seconda (classe sul contenitore) — qualunque accoppiamento funziona già, senza scrivere altro codice. Per aggiungere uno stile di card completamente nuovo, invece, serve una piccola modifica: la funzione che genera l'HTML va scritta in `js/articles.js` e registrata nell'oggetto `CARD_STYLES` in cima al file.
+
+### Stili diversi per mobile e desktop
+
+La struttura (classe sul contenitore) conta solo da desktop: sotto i 1000px diventa comunque sempre una colonna impilata, qualunque classe tu scelga. Puoi però scegliere **stili di card diversi** per quella colonna mobile, aggiungendo `data-styles-mobile` (e, se serve, `data-sizes-mobile` / `data-featured-mobile`) accanto agli attributi desktop — sono opzionali: se non li scrivi, sotto i 1000px vengono semplicemente impilate le stesse card scelte per desktop.
+
+```html
+<div
+  class="featured-grid featured-grid--mosaic"
+  data-featured="3"
+  data-styles="glass,standard,standard"
+  data-sizes="lg,,"
+  data-styles-mobile="glass,glass,glass"
+  data-sizes-mobile="lg,lg,lg"
+>
+  <p class="state-message">Caricamento articoli…</p>
+</div>
+```
+
+Nell'esempio sopra (preso da `index2.html`): da desktop è un mosaico "1 glass grande + 2 standard piccole", da mobile diventano 3 card "glass" impilate, tutte in versione grande. Il cambio avviene subito, anche ridimensionando la finestra o ruotando lo schermo, senza dover ricaricare la pagina.
+
+**Le 5 pagine demo** (`index1.html`...`index5.html`, raggiungibili anche dalla barra nera in cima a `index.html`) mostrano alcune combinazioni pronte, per scegliere più facilmente prima di decidere quale portare sulla Home definitiva:
+
+| Pagina        | Struttura            | Stili                                    |
+| ------------- | --------------------- | ----------------------------------------- |
+| `index1.html` | `--equal`              | 3 card grandi uguali, tutte `glass`       |
+| `index2.html` | `--mosaic`             | 1 `glass` grande + 2 `standard` piccole   |
+| `index3.html` | `--mosaic-1-4`         | 1 `standard` grande + 4 `compact` piccole |
+| `index4.html` | `--mosaic-flip`        | 1 `glass` grande + 2 `overlay` piccole    |
+| `index5.html` | `--equal`              | 3 card uguali, tutte `standard`           |
+
+Una volta scelto il layout preferito, basta copiare il suo `<div class="featured-grid ...">` (con gli stessi `data-styles`/`data-sizes`) dentro `index.html`, al posto di quello attuale; le pagine demo si possono poi cancellare senza effetti su nient'altro, oppure tenerle come riferimento.
+
+**Quali articoli compaiono**: quelli con `featured: true` in `content/articles-data.js` (in ordine di data, il più recente per primo — quindi il primo marcato `featured: true` più recente diventa quello "grande"); se gli articoli in `featured: true` non bastano a riempire tutti gli slot richiesti, vengono aggiunti gli articoli più recenti tra i restanti.
 
 ## Posizione del logo nella navbar
 

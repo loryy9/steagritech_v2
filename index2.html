@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Il Mio Blog — Home</title>
+    <title>Il Mio Blog — Home (Layout 2: Mosaico Glass + Standard)</title>
     <meta name="description" content="Guide pratiche e articoli su sviluppo web, design e strumenti digitali." />
 
     <!-- Sostituisci https://www.tuo-dominio.it con il tuo dominio reale prima di pubblicare -->
@@ -39,9 +39,9 @@
     <div class="demo-switcher">
         <div class="container demo-switcher__inner">
             <span class="demo-switcher__label">Layout home:</span>
-            <a href="index.html" class="demo-switcher__link is-active">Originale</a>
+            <a href="index.html" class="demo-switcher__link">Originale</a>
             <a href="index1.html" class="demo-switcher__link">1 · Equal Glass</a>
-            <a href="index2.html" class="demo-switcher__link">2 · Mosaico Glass + Standard</a>
+            <a href="index2.html" class="demo-switcher__link is-active">2 · Mosaico Glass + Standard</a>
             <a href="index3.html" class="demo-switcher__link">3 · Mosaico Standard + Compatte</a>
             <a href="index4.html" class="demo-switcher__link">4 · Mosaico Overlay + Glass</a>
             <a href="index5.html" class="demo-switcher__link">5 · Equal Standard</a>
@@ -106,11 +106,23 @@
 
     <main>
 
-        <!-- ==================== ARTICOLI IN EVIDENZA ==================== -->
+        <!-- ==================== ARTICOLI IN EVIDENZA ====================
+             Layout 2: mosaico con 1 card grande a sinistra in stile "liquid
+             glass" e 2 card piccole impilate a destra in stile standard
+             (immagine sopra, titolo sotto, come nella pagina articoli).
+
+             Su MOBILE (sotto i 1000px, dove il mosaico torna comunque una
+             singola colonna) qui mostriamo invece 3 card "glass" impilate:
+             data-styles-mobile / data-sizes-mobile sostituiscono
+             data-styles / data-sizes SOLO sotto quella soglia. Se non li
+             scrivi, sotto i 1000px si usano semplicemente le stesse
+             impostazioni desktop, impilate in colonna. -->
         <section class="section">
             <div class="container">
 
-                <div class="featured-grid featured-grid--mosaic" data-featured="3">
+                <div class="featured-grid featured-grid--mosaic" data-featured="3"
+                    data-styles="glass,standard,standard" data-sizes="lg,,"
+                    data-styles-mobile="glass,glass,glass" data-sizes-mobile="lg,lg,lg">
                     <p class="state-message">Caricamento articoli…</p>
                 </div>
 
@@ -133,52 +145,6 @@
             </a>
         </div>
     </main>
-
-    <!-- ==================== FOOTER ==================== -->
-    <!-- <footer class="footer">
-        <div class="container">
-            <div class="footer__grid">
-                <div>
-                    <div class="navbar__logo" style="margin-bottom: var(--space-3)">
-                        <img src="assets/logo.svg" alt="Logo del blog" />
-                        <span>Il Mio Blog</span>
-                    </div>
-                    <p class="text-muted">
-                        Boilerplate per blog personale o aziendale: colori, tema e
-                        contenuti gestibili in pochi minuti.
-                    </p>
-                </div>
-                <div>
-                    <div class="footer__title">Naviga</div>
-                    <ul class="footer__links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="articles.html">Articoli</a></li>
-                        <li><a href="contact.html">Contatti</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer__title">Social</div>
-                    <ul class="footer__links">
-                        <li><a href="#">Twitter / X</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">LinkedIn</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer__title">Legale</div>
-                    <ul class="footer__links">
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="cookie.html">Cookie Policy</a></li>
-                        <li><a href="#" data-manage-cookies>Gestisci cookie</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer__bottom">
-                <span>&copy; 2026 Il Mio Blog. Tutti i diritti riservati.</span>
-                <span>Realizzato con HTML, CSS e JavaScript.</span>
-            </div>
-        </div>
-    </footer> -->
 
     <script src="js/main.js"></script>
     <script src="js/cookie-consent.js"></script>

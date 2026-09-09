@@ -99,6 +99,47 @@ ul { margin: 0; padding: 0; list-style: none; }
   border-bottom: 1px solid var(--color-border);
 }
 
+/* ---------- 3b. Barra di confronto layout home (solo pagine demo) ---------- */
+/* Presente solo su index.html e index1.html...index5.html per passare
+   velocemente da un layout all'altro e confrontarli. Rimuovibile in
+   qualsiasi momento cancellando il blocco <div class="demo-switcher">...
+   dall'HTML: non incide sul resto del sito. */
+.demo-switcher {
+  background-color: #14161a;
+  color: #eef0f3;
+  font-size: var(--fs-xs);
+}
+.demo-switcher__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  padding-block: var(--space-2);
+}
+.demo-switcher__label {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(238, 240, 243, 0.6);
+  margin-right: var(--space-2);
+}
+.demo-switcher__link {
+  color: rgba(238, 240, 243, 0.85);
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(238, 240, 243, 0.25);
+  white-space: nowrap;
+}
+.demo-switcher__link:hover {
+  color: #fff;
+  border-color: rgba(238, 240, 243, 0.6);
+}
+.demo-switcher__link.is-active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
 .navbar__inner {
   height: 100%;
   display: flex;
@@ -426,6 +467,10 @@ a.article-header__category:hover {
 .article-card__title {
   font-size: var(--fs-md);
   margin-bottom: var(--space-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .article-card__title a {
   color: var(--color-text);
@@ -438,17 +483,30 @@ a.article-header__category:hover {
   color: var(--color-text-muted);
   font-size: var(--fs-sm);
   flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .article-card__meta {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--space-3);
   font-size: var(--fs-xs);
   color: var(--color-text-muted);
   margin-top: var(--space-3);
   padding-top: var(--space-3);
   border-top: 1px solid var(--color-border);
+}
+
+/* Slot "grande" di un mosaico: card più leggibile a colpo d'occhio */
+.article-card--lg .article-card__title {
+  font-size: var(--fs-xl);
+}
+.article-card--lg .article-card__excerpt {
+  font-size: var(--fs-base);
 }
 
 .load-more-wrap {
@@ -523,6 +581,10 @@ a.article-header__category:hover {
   color: #fff;
   font-size: var(--fs-lg);
   margin-bottom: var(--space-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .featured-card__meta {
@@ -530,31 +592,340 @@ a.article-header__category:hover {
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* ---------- 6c. Card "liquid glass" ---------- */
+/* Immagine in alto + pannello vetro smerigliato (blur) che si sovrappone
+   alla parte bassa della foto. Usa .glass-card--lg come slot "grande" di
+   un mosaico (titolo più grande, sommario visibile). */
+.glass-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--color-bg-alt);
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+.glass-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+.glass-card__media {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 220px;
+  overflow: hidden;
+}
+.glass-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+.glass-card:hover .glass-card__media img {
+  transform: scale(1.05);
+}
+
+.glass-card__panel {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin: -2.75rem var(--space-4) 0;
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 8px 24px rgba(16, 20, 24, 0.1);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+}
+
+.glass-card__category {
+  display: inline-block;
+  width: fit-content;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 2px 10px;
+  border-radius: 999px;
+  margin-bottom: var(--space-2);
+}
+.glass-card__category:hover {
+  color: var(--color-primary-hover);
+}
+
+.glass-card__title {
+  font-size: var(--fs-md);
+  margin-bottom: var(--space-2);
+}
+.glass-card__title a {
+  color: var(--color-text);
+}
+.glass-card__title a:hover {
+  color: var(--color-primary);
+}
+
+.glass-card__excerpt {
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-3);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.glass-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  padding-top: var(--space-2);
+  border-top: 1px solid rgba(16, 20, 24, 0.08);
+}
+
+/* Freccina "vai all'articolo": stesso stile (cerchietto in basso a
+   destra) su tutte le versioni di card. Ogni template la include di
+   default; può essere nascosta passando showArrow=false (vedi
+   js/articles.js) o con data-arrow="false" sul contenitore. */
+.article-card__arrow,
+.featured-card__arrow,
+.glass-card__arrow,
+.compact-card__arrow {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-text);
+  color: var(--color-bg);
+  transition: background var(--transition-fast);
+}
+.article-card:hover .article-card__arrow,
+.featured-card:hover .featured-card__arrow,
+.glass-card:hover .glass-card__arrow,
+.compact-card:hover .compact-card__arrow {
+  background: var(--color-primary);
+}
+
+.featured-card__arrow {
+  position: absolute;
+  right: var(--space-5);
+  bottom: var(--space-5);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--color-text);
+}
+.featured-card:hover .featured-card__arrow {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.glass-card--lg .glass-card__title {
+  font-size: var(--fs-xl);
+}
+
+/* ---------- 6d. Card "compatta" (lista con miniatura) ---------- */
+/* Miniatura piccola a sinistra + titolo e meta a destra: pensata per
+   elenchi verticali di più articoli (es. "ultimi articoli" a fianco di
+   una card grande). Nessun bordo/sfondo proprio: si appoggia sulla
+   sezione che la contiene. */
+.compact-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+.compact-card:last-child {
+  border-bottom: 0;
+}
+
+.compact-card__image {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background-color: var(--color-bg-alt);
+}
+.compact-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.compact-card__body {
+  min-width: 0;
+  flex: 1;
+}
+
+.compact-card__category {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  margin-bottom: 2px;
+}
+
+.compact-card__title {
+  margin: 0 0 4px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.compact-card:hover .compact-card__title {
+  color: var(--color-primary);
+}
+
+.compact-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+.compact-card__meta .compact-card__arrow {
+  width: 20px;
+  height: 20px;
+  font-size: var(--fs-xs);
+}
+
 @media (min-width: 1000px) {
-  /* 1 grande a sinistra (colonne 1-2, entrambe le righe) + 2 impilati a destra */
+  /* 1 grande a sinistra (colonne 1-2, entrambe le righe) + 2 impilati a destra.
+     I selettori usano ">:nth-child()" (non legati a una classe di card
+     specifica) così qualunque stile di card (default, overlay, glass...)
+     può occupare uno slot: lo stile della card è scelto via data-styles,
+     la struttura del mosaico resta indipendente. */
   .featured-grid--mosaic,
   .featured-grid--mosaic-flip {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    min-height: 520px;
+    height: 560px;
   }
-  .featured-grid--mosaic .featured-card:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; }
-  .featured-grid--mosaic .featured-card:nth-child(2) { grid-column: 3 / 5; grid-row: 1; }
-  .featured-grid--mosaic .featured-card:nth-child(3) { grid-column: 3 / 5; grid-row: 2; }
+  .featured-grid--mosaic > :nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; }
+  .featured-grid--mosaic > :nth-child(2) { grid-column: 3 / 5; grid-row: 1; }
+  .featured-grid--mosaic > :nth-child(3) { grid-column: 3 / 5; grid-row: 2; }
 
   /* Specchiato: grande a destra */
-  .featured-grid--mosaic-flip .featured-card:nth-child(1) { grid-column: 3 / 5; grid-row: 1 / 3; }
-  .featured-grid--mosaic-flip .featured-card:nth-child(2) { grid-column: 1 / 3; grid-row: 1; }
-  .featured-grid--mosaic-flip .featured-card:nth-child(3) { grid-column: 1 / 3; grid-row: 2; }
+  .featured-grid--mosaic-flip > :nth-child(1) { grid-column: 3 / 5; grid-row: 1 / 3; }
+  .featured-grid--mosaic-flip > :nth-child(2) { grid-column: 1 / 3; grid-row: 1; }
+  .featured-grid--mosaic-flip > :nth-child(3) { grid-column: 1 / 3; grid-row: 2; }
 
+  /* Le celle piccole del mosaico hanno un'altezza fissa e stretta: una
+     card "standard" con immagine ad aspect-ratio fisso (16:9) rischierebbe
+     di sforare ed essere tagliata. Qui l'immagine diventa "elastica" (si
+     allunga o si accorcia per riempire esattamente lo spazio disponibile,
+     esattamente come già fa la card "glass"), mentre il blocco testo
+     mantiene la sua altezza naturale: risultato sempre proporzionato,
+     qualunque sia l'altezza della cella. */
+  .featured-grid--mosaic .article-card,
+  .featured-grid--mosaic-flip .article-card,
+  .featured-grid--mosaic-1-4 .article-card,
+  .featured-grid--mosaic-1-4-flip .article-card {
+    height: 100%;
+  }
+  .featured-grid--mosaic .article-card__image,
+  .featured-grid--mosaic-flip .article-card__image,
+  .featured-grid--mosaic-1-4 .article-card__image,
+  .featured-grid--mosaic-1-4-flip .article-card__image {
+    aspect-ratio: unset;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  .featured-grid--mosaic .article-card__body,
+  .featured-grid--mosaic-flip .article-card__body,
+  .featured-grid--mosaic-1-4 .article-card__body,
+  .featured-grid--mosaic-1-4-flip .article-card__body {
+    flex: 0 0 auto;
+  }
+  /* Negli slot piccoli (non "lg") il sommario viene nascosto: c'è poco
+     spazio verticale ed è meglio lasciarlo tutto all'immagine e al
+     titolo piuttosto che rimpicciolire eccessivamente entrambi. */
+  .featured-grid--mosaic .article-card:not(.article-card--lg) .article-card__excerpt,
+  .featured-grid--mosaic-flip .article-card:not(.article-card--lg) .article-card__excerpt,
+  .featured-grid--mosaic-1-4 .article-card:not(.article-card--lg) .article-card__excerpt,
+  .featured-grid--mosaic-1-4-flip .article-card:not(.article-card--lg) .article-card__excerpt {
+    display: none;
+  }
+  .featured-grid--mosaic .article-card:not(.article-card--lg) .article-card__body,
+  .featured-grid--mosaic-flip .article-card:not(.article-card--lg) .article-card__body {
+    padding: var(--space-4);
+  }
+
+  /* Rimane come "bonus" solo per lo stile overlay: se lo slot 1 è una
+     .featured-card, il titolo viene ingrandito automaticamente. Per gli
+     altri stili (glass, default) l'ingrandimento si ottiene con la
+     dimensione "lg" (vedi data-sizes e i modificatori --lg qui sotto). */
   .featured-grid--mosaic .featured-card:nth-child(1) .featured-card__title,
   .featured-grid--mosaic-flip .featured-card:nth-child(1) .featured-card__title {
     font-size: var(--fs-2xl);
   }
 
-  /* Tutti gli articoli della stessa dimensione, in fila (si adatta a qualunque numero) */
+  /* Tutti gli articoli della stessa larghezza, in fila (si adatta a
+     qualunque numero) e della STESSA ALTEZZA (stretch, di default): se il
+     titolo di una card è più lungo, non è la card a crescere ma solo il
+     suo contenuto interno — nella glass card, ad esempio, il pannello di
+     vetro si allarga e l'immagine si restringe di conseguenza, restando
+     sempre della stessa altezza delle card vicine. Qui togliamo solo il
+     taglio con i puntini di sospensione: il testo resta sempre leggibile
+     per intero. */
   .featured-grid--equal {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  }
+  .featured-grid--equal .glass-card__title,
+  .featured-grid--equal .article-card__title,
+  .featured-grid--equal .featured-card__title {
+    display: block;
+    overflow: visible;
+  }
+  .featured-grid--equal .article-card__excerpt,
+  .featured-grid--equal .glass-card__excerpt {
+    display: block;
+    overflow: visible;
+  }
+
+  /* 1 grande (metà larghezza, altezza piena) + 4 card compatte impilate
+     nell'altra metà, come una lista "ultimi articoli". */
+  .featured-grid--mosaic-1-4,
+  .featured-grid--mosaic-1-4-flip {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    height: 500px;
+  }
+  .featured-grid--mosaic-1-4 > :nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 5; }
+  .featured-grid--mosaic-1-4 > :nth-child(2) { grid-column: 3 / 5; grid-row: 1; }
+  .featured-grid--mosaic-1-4 > :nth-child(3) { grid-column: 3 / 5; grid-row: 2; }
+  .featured-grid--mosaic-1-4 > :nth-child(4) { grid-column: 3 / 5; grid-row: 3; }
+  .featured-grid--mosaic-1-4 > :nth-child(5) { grid-column: 3 / 5; grid-row: 4; }
+
+  /* Specchiato: grande a destra, lista a sinistra */
+  .featured-grid--mosaic-1-4-flip > :nth-child(1) { grid-column: 3 / 5; grid-row: 1 / 5; }
+  .featured-grid--mosaic-1-4-flip > :nth-child(2) { grid-column: 1 / 3; grid-row: 1; }
+  .featured-grid--mosaic-1-4-flip > :nth-child(3) { grid-column: 1 / 3; grid-row: 2; }
+  .featured-grid--mosaic-1-4-flip > :nth-child(4) { grid-column: 1 / 3; grid-row: 3; }
+  .featured-grid--mosaic-1-4-flip > :nth-child(5) { grid-column: 1 / 3; grid-row: 4; }
+
+  .featured-grid--mosaic-1-4 .compact-card,
+  .featured-grid--mosaic-1-4-flip .compact-card {
+    height: 100%;
   }
 }
 
