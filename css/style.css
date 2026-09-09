@@ -512,13 +512,17 @@ a.article-header__category:hover {
 .load-more-wrap {
   display: flex;
   justify-content: center;
-  margin-top: var(--space-7);
+  margin-top: var(--space-8);
 }
 
 .state-message {
   text-align: center;
   color: var(--color-text-muted);
   padding: var(--space-6) 0;
+}
+
+.spacer{
+    margin: var(--space-8) 0;
 }
 
 /* ---------- 6b. Articoli in evidenza: mosaico ---------- */

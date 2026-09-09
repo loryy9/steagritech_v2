@@ -172,6 +172,29 @@ Una volta scelto il layout preferito, basta copiare il suo `<div class="featured
 
 **Quali articoli compaiono**: quelli con `featured: true` in `content/articles-data.js` (in ordine di data, il più recente per primo — quindi il primo marcato `featured: true` più recente diventa quello "grande"); se gli articoli in `featured: true` non bastano a riempire tutti gli slot richiesti, vengono aggiunti gli articoli più recenti tra i restanti.
 
+### Seconda sezione di articoli (`data-highlighted`)
+
+Per aggiungere una seconda griglia sotto il pulsante "Vedi tutti gli articoli", usa un normale `<div class="articles-grid">` con questi attributi:
+
+```html
+<div
+  class="articles-grid"
+  data-highlighted="3"
+  data-highlighted-offset="3"
+  data-styles="glass,glass,glass"
+>
+  <p class="state-message">Caricamento articoli…</p>
+</div>
+```
+
+- **`data-highlighted="N"`** → numero massimo di card da mostrare nella seconda sezione. Se omesso, sono 3.
+- **`data-highlighted-offset="N"`** → quanti articoli saltare dall'inizio dell'elenco ordinato per data. Con `3`, la sezione salta i tre articoli già mostrati nella griglia principale e mostra i successivi tre. Se omesso, parte dal primo articolo (`0`).
+- **`data-styles`** → stile di ogni card, nello stesso ordine, separato da virgole: `standard`, `overlay`, `glass` o `compact`. Se gli stili sono meno delle card, l'ultimo stile viene riutilizzato.
+- **`data-sizes`** → opzionale, funziona come nella griglia principale e permette di assegnare `lg` agli slot desiderati.
+- **`data-arrow="false"`** → opzionale, nasconde la freccia nelle card.
+
+La seconda griglia viene renderizzata da `renderHighlighted()` in `js/articles.js` e usa gli stessi dati di `content/articles-data.js`. Gli articoli sono ordinati dal più recente al più vecchio; `data-highlighted-offset` non filtra la proprietà `featured`, ma salta semplicemente le prime posizioni dell'elenco completo. Per questo `data-styles="glass,glass,glass"` funziona anche qui: viene usato lo stesso registro `CARD_STYLES` della griglia principale.
+
 ## Posizione del logo nella navbar
 
 Su ogni pagina, l'elemento `<header class="navbar ...">` ha una classe modificatore:

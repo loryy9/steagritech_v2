@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Il Mio Blog — Home (Layout 2: Mosaico Glass + Standard)</title>
+    <title>Il Mio Blog</title>
     <meta name="description" content="Guide pratiche e articoli su sviluppo web, design e strumenti digitali." />
 
     <!-- Sostituisci https://www.tuo-dominio.it con il tuo dominio reale prima di pubblicare -->
@@ -39,12 +39,9 @@
     <div class="demo-switcher">
         <div class="container demo-switcher__inner">
             <span class="demo-switcher__label">Layout home:</span>
-            <a href="index.html" class="demo-switcher__link">Originale</a>
-            <a href="index1.html" class="demo-switcher__link">1 · Equal Glass</a>
-            <a href="index2.html" class="demo-switcher__link is-active">2 · Mosaico Glass + Standard</a>
-            <a href="index3.html" class="demo-switcher__link">3 · Mosaico Standard + Compatte</a>
-            <a href="index4.html" class="demo-switcher__link">4 · Mosaico Overlay + Glass</a>
-            <a href="index5.html" class="demo-switcher__link">5 · Equal Standard</a>
+            <a href="index.html" class="demo-switcher__link ">evidenza glass</a>
+            <a href="index1.html" class="demo-switcher__link">evidenza standard</a>
+            <a href="index2.html" class="demo-switcher__link is-active">evidenza overlay</a>
         </div>
     </div>
 
@@ -107,28 +104,34 @@
     <main>
 
         <!-- ==================== ARTICOLI IN EVIDENZA ====================
-             Layout 2: mosaico con 1 card grande a sinistra in stile "liquid
-             glass" e 2 card piccole impilate a destra in stile standard
-             (immagine sopra, titolo sotto, come nella pagina articoli).
-
-             Su MOBILE (sotto i 1000px, dove il mosaico torna comunque una
-             singola colonna) qui mostriamo invece 3 card "glass" impilate:
-             data-styles-mobile / data-sizes-mobile sostituiscono
-             data-styles / data-sizes SOLO sotto quella soglia. Se non li
-             scrivi, sotto i 1000px si usano semplicemente le stesse
-             impostazioni desktop, impilate in colonna. -->
+             Layout 4: mosaico specchiato (grande a destra) in stile "liquid
+             glass" + 2 card piccole a sinistra nello stile "overlay"
+             originale (immagine a piena card, titolo dentro).
+             ================================================================ -->
         <section class="section">
             <div class="container">
 
-                <div class="featured-grid featured-grid--mosaic" data-featured="3"
-                    data-styles="glass,standard,standard" data-sizes="lg,,"
-                    data-styles-mobile="glass,glass,glass" data-sizes-mobile="lg,lg,lg">
+                <div class="featured-grid featured-grid--mosaic" data-featured="3" data-styles="glass,overlay,overlay"
+                    data-sizes="lg,,">
                     <p class="state-message">Caricamento articoli…</p>
                 </div>
 
                 <div class="load-more-wrap">
                     <!-- <a href="articles.html" class="btn btn--outline">Vedi tutti gli articoli</a> -->
                     <a href="#" class="btn btn--outline">Vedi tutti gli articoli</a>
+                </div>
+
+                <div class="spacer">
+
+                </div>
+
+                <div class="section-header section-header--featured">
+                    <h2>Articoli in evidenza</h2>
+                    <p>Approfondimenti scelti per chi lavora ogni giorno nel settore agricolo.</p>
+                </div>
+
+                <div class="articles-grid" data-highlighted="3" data-highlighted-offset="3" data-styles="overlay,overlay,overlay">
+                    <p class="state-message">Caricamento articoli…</p>
                 </div>
             </div>
         </section>

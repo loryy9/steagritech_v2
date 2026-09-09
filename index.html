@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Il Mio Blog — Home</title>
+    <title>Il Mio Blog</title>
     <meta name="description" content="Guide pratiche e articoli su sviluppo web, design e strumenti digitali." />
 
     <!-- Sostituisci https://www.tuo-dominio.it con il tuo dominio reale prima di pubblicare -->
@@ -39,12 +39,9 @@
     <div class="demo-switcher">
         <div class="container demo-switcher__inner">
             <span class="demo-switcher__label">Layout home:</span>
-            <a href="index.html" class="demo-switcher__link is-active">Originale</a>
-            <a href="index1.html" class="demo-switcher__link">1 · Equal Glass</a>
-            <a href="index2.html" class="demo-switcher__link">2 · Mosaico Glass + Standard</a>
-            <a href="index3.html" class="demo-switcher__link">3 · Mosaico Standard + Compatte</a>
-            <a href="index4.html" class="demo-switcher__link">4 · Mosaico Overlay + Glass</a>
-            <a href="index5.html" class="demo-switcher__link">5 · Equal Standard</a>
+            <a href="index.html" class="demo-switcher__link is-active">evidenza glass</a>
+            <a href="index1.html" class="demo-switcher__link">evidenza standard</a>
+            <a href="index2.html" class="demo-switcher__link">evidenza overlay</a>
         </div>
     </div>
 
@@ -106,17 +103,35 @@
 
     <main>
 
-        <!-- ==================== ARTICOLI IN EVIDENZA ==================== -->
+        <!-- ==================== ARTICOLI IN EVIDENZA ====================
+             Layout 4: mosaico specchiato (grande a destra) in stile "liquid
+             glass" + 2 card piccole a sinistra nello stile "overlay"
+             originale (immagine a piena card, titolo dentro).
+             ================================================================ -->
         <section class="section">
             <div class="container">
 
-                <div class="featured-grid featured-grid--mosaic" data-featured="3">
+                <div class="featured-grid featured-grid--mosaic" data-featured="3"
+                    data-styles="glass,overlay,overlay" data-sizes="lg,,">
                     <p class="state-message">Caricamento articoli…</p>
                 </div>
 
                 <div class="load-more-wrap">
                     <!-- <a href="articles.html" class="btn btn--outline">Vedi tutti gli articoli</a> -->
                     <a href="#" class="btn btn--outline">Vedi tutti gli articoli</a>
+                </div>
+
+                <div class="spacer">
+                    
+                </div>
+
+                <div class="section-header section-header--featured">
+                    <h2>Articoli in evidenza</h2>
+                    <p>Approfondimenti scelti per chi lavora ogni giorno nel settore agricolo.</p>
+                </div>
+
+                <div class="articles-grid" data-highlighted="3" data-highlighted-offset="3" data-styles="glass,glass,glass">
+                    <p class="state-message">Caricamento articoli…</p>
                 </div>
             </div>
         </section>
@@ -133,52 +148,6 @@
             </a>
         </div>
     </main>
-
-    <!-- ==================== FOOTER ==================== -->
-    <!-- <footer class="footer">
-        <div class="container">
-            <div class="footer__grid">
-                <div>
-                    <div class="navbar__logo" style="margin-bottom: var(--space-3)">
-                        <img src="assets/logo.svg" alt="Logo del blog" />
-                        <span>Il Mio Blog</span>
-                    </div>
-                    <p class="text-muted">
-                        Boilerplate per blog personale o aziendale: colori, tema e
-                        contenuti gestibili in pochi minuti.
-                    </p>
-                </div>
-                <div>
-                    <div class="footer__title">Naviga</div>
-                    <ul class="footer__links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="articles.html">Articoli</a></li>
-                        <li><a href="contact.html">Contatti</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer__title">Social</div>
-                    <ul class="footer__links">
-                        <li><a href="#">Twitter / X</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">LinkedIn</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer__title">Legale</div>
-                    <ul class="footer__links">
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="cookie.html">Cookie Policy</a></li>
-                        <li><a href="#" data-manage-cookies>Gestisci cookie</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer__bottom">
-                <span>&copy; 2026 Il Mio Blog. Tutti i diritti riservati.</span>
-                <span>Realizzato con HTML, CSS e JavaScript.</span>
-            </div>
-        </div>
-    </footer> -->
 
     <script src="js/main.js"></script>
     <script src="js/cookie-consent.js"></script>

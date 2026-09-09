@@ -3,6 +3,7 @@
    (definito in content/articles-data.js, incluso PRIMA di
    questo script) e li mostra:
    - in home, come "articoli in evidenza" (data-featured="N")
+     e come seconda griglia configurabile (data-highlighted="N")
    - nella pagina articoli, con paginazione "carica altri" (STEP),
      ricerca testuale e filtro per categoria (?category=...)
 
@@ -257,6 +258,38 @@
       .join("");
   }
 
+  /* ---------- Home: seconda griglia di articoli ----------
+     [data-highlighted] usa gli stessi stili di card di [data-featured], ma
+     seleziona gli articoli in ordine di data partendo da data-highlighted-offset. */
+  function renderHighlighted() {
+    var container = document.querySelector("[data-highlighted]");
+    if (!container) return;
+
+    var limit = parseInt(container.getAttribute("data-highlighted"), 10) || 3;
+    var offset = parseInt(container.getAttribute("data-highlighted-offset"), 10) || 0;
+    var stylesAttr = container.getAttribute("data-styles");
+    var styles = stylesAttr
+      ? stylesAttr.split(",").map(function (s) { return s.trim(); })
+      : null;
+    var sizesAttr = container.getAttribute("data-sizes") || "";
+    var sizes = sizesAttr.split(",").map(function (s) { return s.trim(); });
+    var showArrow = container.getAttribute("data-arrow") !== "false";
+    var articles = sortByDateDesc(getArticles()).slice(offset, offset + limit);
+
+    if (!articles.length) {
+      container.innerHTML = '<p class="state-message">Nessun articolo disponibile al momento.</p>';
+      return;
+    }
+
+    container.innerHTML = articles
+      .map(function (article, i) {
+        var styleName = styles ? styles[i] || styles[styles.length - 1] : "standard";
+        var template = CARD_STYLES[styleName] || CARD_STYLES.standard;
+        return template(article, sizes[i] || "", showArrow);
+      })
+      .join("");
+  }
+
   /* Se la Home usa impostazioni diverse per mobile (data-styles-mobile),
      ri-renderizza quando si attraversa la soglia dei 1000px (es. si
      ruota il telefono, o si ridimensiona la finestra) così il layout
@@ -392,6 +425,7 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     renderFeatured();
+    renderHighlighted();
     initFeaturedResponsive();
     initArticleList();
   });
