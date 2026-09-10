@@ -25,26 +25,37 @@
 </head>
 <body>
 
-  <header class="navbar navbar--logo-left">
+  <header class="navbar navbar--logo-left navbar--con-categorie">
     <div class="container navbar__inner">
       <a href="index.html" class="navbar__logo">
-        <img src="assets/logo.svg" alt="Logo del blog">
-        <span>Il Mio Blog</span>
+        <img src="assets/logo.png" alt="Logo del blog">
       </a>
 
       <nav class="navbar__menu" data-navbar-menu>
         <a href="index.html" class="navbar__link">Home</a>
         <a href="articles.html" class="navbar__link">Articoli</a>
         <a href="contact.html" class="navbar__link">Contatti</a>
+        <a href="URL_TIKTOK" class="navbar__link navbar__social-link" target="_blank" rel="noopener">
+          <img class="navbar__social-logo" src="assets/Loghi_social/tik-tok.png" alt="TikTok">
+        </a>
+        <a href="URL_YOUTUBE" class="navbar__link navbar__social-link" target="_blank" rel="noopener">
+          <img class="navbar__social-logo" src="assets/Loghi_social/youtube.png" alt="YouTube">
+        </a>
+        <a href="URL_INSTAGRAM" class="navbar__link navbar__social-link" target="_blank" rel="noopener">
+          <img class="navbar__social-logo" src="assets/Loghi_social/instagram.png" alt="Instagram">
+        </a>
       </nav>
-
-      <div class="navbar__actions">
-        <button class="theme-toggle" data-theme-toggle aria-label="Cambia tema">🌙</button>
-        <button class="hamburger" data-hamburger aria-label="Apri il menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
     </div>
+
+    <nav class="categorie" aria-label="Categorie degli articoli">
+      <div class="container categorie__inner">
+        <a href="articles.html?category=Trattori" class="categorie__link">Trattori</a>
+        <a href="articles.html?category=Attrezzature" class="categorie__link">Attrezzature</a>
+        <a href="articles.html?category=Macchine%20da%20raccolta" class="categorie__link">Macchine da raccolta</a>
+        <a href="articles.html?category=Agronomia" class="categorie__link">Agronomia</a>
+        <a href="articles.html?category=Altro" class="categorie__link">Altro</a>
+      </div>
+    </nav>
   </header>
 
   <main>
@@ -52,15 +63,14 @@
       <div class="container">
         <div class="section-header text-center">
           <h1>Tutti gli articoli</h1>
-          <p>Sfoglia le guide più recenti, un blocco alla volta</p>
         </div>
 
         <!-- Banner pubblicitario in cima alla lista (vedi esempio nel README) -->
-        <div class="ad-slot">
+        <!-- <div class="ad-slot">
           <div class="ad-banner ad-banner--leaderboard">
             <span class="ad-banner__label">Spazio pubblicitario 728×90</span>
           </div>
-        </div>
+        </div> -->
 
         <div class="search-bar">
           <input type="search" class="form-control" data-article-search placeholder="Cerca per titolo, categoria o autore…" aria-label="Cerca articoli">
@@ -90,7 +100,7 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer" hidden>
     <div class="container">
       <div class="footer__grid">
         <div>

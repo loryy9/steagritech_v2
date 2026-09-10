@@ -14,7 +14,7 @@
 (function () {
   "use strict";
 
-  var STEP = 2; // quanti articoli caricare ad ogni click / al primo caricamento
+  var STEP = 10; // quanti articoli caricare ad ogni click / al primo caricamento
 
   function formatDate(isoDate) {
     var d = new Date(isoDate);
@@ -81,11 +81,9 @@
       '">' +
       escapeHtml(article.category || "Blog") +
       "</a>" +
-      '<h3 class="article-card__title"><a href="article.html?slug=' +
-      encodeURIComponent(article.slug) +
-      '">' +
+      '<h3 class="article-card__title">' +
       escapeHtml(article.title) +
-      "</a></h3>" +
+      "</h3>" +
       '<p class="article-card__excerpt">' +
       escapeHtml(article.excerpt || "") +
       "</p>" +
@@ -106,8 +104,7 @@
       : "";
 
     return (
-      '<a class="featured-card" href="#  ">' +
-    //   '<a class="featured-card" href="article.html?slug=' + encodeURIComponent(article.slug) + '">' +
+      '<div class="featured-card">' +
         img +
         '<div class="featured-card__overlay">' +
           '<span class="featured-card__category">' + escapeHtml(article.category || "Blog") + "</span>" +
@@ -115,7 +112,7 @@
           '<div class="featured-card__meta">' + metaText(article) + "</div>" +
         "</div>" +
         (showArrow === false ? "" : '<span class="featured-card__arrow" aria-hidden="true">&rarr;</span>') +
-      "</a>"
+      "</div>"
     );
   }
 
@@ -134,9 +131,9 @@
           '<a class="glass-card__category" href="articles.html?category=' + encodeURIComponent(article.category || "Blog") + '">' +
             escapeHtml(article.category || "Blog") +
           "</a>" +
-          '<h3 class="glass-card__title"><a href="article.html?slug=' + encodeURIComponent(article.slug) + '">' +
+          '<h3 class="glass-card__title">' +
             escapeHtml(article.title) +
-          "</a></h3>" +
+          "</h3>" +
           (isLarge && article.excerpt ? '<p class="glass-card__excerpt">' + escapeHtml(article.excerpt) + "</p>" : "") +
           '<div class="glass-card__meta">' +
             "<span>" + metaText(article) + "</span>" +
@@ -153,7 +150,7 @@
       : '<div class="compact-card__image"></div>';
 
     return (
-      '<a class="compact-card" href="article.html?slug=' + encodeURIComponent(article.slug) + '">' +
+      '<div class="compact-card">' +
         img +
         '<div class="compact-card__body">' +
           '<span class="compact-card__category">' + escapeHtml(article.category || "Blog") + "</span>" +
@@ -163,7 +160,7 @@
             (showArrow === false ? "" : '<span class="compact-card__arrow" aria-hidden="true">&rarr;</span>') +
           "</div>" +
         "</div>" +
-      "</a>"
+      "</div>"
     );
   }
 
