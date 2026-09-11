@@ -14,7 +14,7 @@
 (function () {
   "use strict";
 
-  var STEP = 10; // quanti articoli caricare ad ogni click / al primo caricamento
+  var STEP = 3; // quanti articoli caricare ad ogni click / al primo caricamento
 
   function formatDate(isoDate) {
     var d = new Date(isoDate);
@@ -312,13 +312,33 @@
     var loadMoreBtn = document.querySelector("[data-load-more]");
     var statusEl = document.querySelector("[data-articles-status]");
     var searchInput = document.querySelector("[data-article-search]");
-    var filterBadge = document.querySelector("[data-category-filter]");
+    var titleEl = document.querySelector("[data-articles-title]");
+    var categoryLinks = document.querySelectorAll(".categorie__link");
     if (!container) return;
 
     var allArticles = sortByDateDesc(getArticles());
     var visibleCount = 0;
     var activeCategory = new URLSearchParams(window.location.search).get("category") || "";
     var showArrow = container.getAttribute("data-arrow") !== "false";
+
+    function updateCategoryState() {
+      if (titleEl) {
+        titleEl.textContent = activeCategory
+          ? "Tutti gli articoli della categoria: " + activeCategory
+          : "Tutti gli articoli";
+      }
+
+      categoryLinks.forEach(function (link) {
+        var linkCategory = new URL(link.href, window.location.href).searchParams.get("category") || "";
+        var isActive = activeCategory && linkCategory.toLowerCase() === activeCategory.toLowerCase();
+        link.classList.toggle("is-active", Boolean(isActive));
+        if (isActive) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    }
 
     function matches(article, query) {
       if (!query) return true;
@@ -344,17 +364,6 @@
       });
     }
 
-    function updateFilterBadge() {
-      if (!filterBadge) return;
-      if (activeCategory) {
-        filterBadge.innerHTML =
-          "Categoria: <strong>" + escapeHtml(activeCategory) + "</strong> &nbsp;·&nbsp; <a href=\"articles.html\">Rimuovi filtro ✕</a>";
-        filterBadge.style.display = "";
-      } else {
-        filterBadge.style.display = "none";
-      }
-    }
-
     function renderList() {
       var results = filteredArticles();
 
@@ -377,7 +386,7 @@
       var nextItems = results.slice(visibleCount, visibleCount + STEP);
       container.insertAdjacentHTML(
         "beforeend",
-        nextItems.map(function (article) { return cardTemplate(article, "", showArrow); }).join("")
+        nextItems.map(function (article) { return CARD_STYLES.overlay(article, "", showArrow); }).join("")
       );
       visibleCount += nextItems.length;
 
@@ -396,7 +405,7 @@
       }
     }
 
-    updateFilterBadge();
+    updateCategoryState();
 
     if (!allArticles.length) {
       container.innerHTML = '<p class="state-message">Nessun articolo pubblicato ancora.</p>';
