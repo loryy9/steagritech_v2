@@ -104,10 +104,51 @@
     });
   }
 
+  /* ---------- Movimento della card contatti durante lo scroll ---------- */
+  function initContactCardMotion() {
+    var card = document.querySelector(".contact-cta__inner");
+    if (!card || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var frameRequested = false;
+
+    function updateCardPosition() {
+      var viewportHeight = window.innerHeight;
+      var cardHeight = card.offsetHeight;
+      var progress = (viewportHeight - card.getBoundingClientRect().top) / (viewportHeight + cardHeight);
+      var centeredProgress = Math.max(0, Math.min(1, progress));
+      var distance = window.innerWidth <= 699
+        ? 0
+        : Math.min(120, window.innerWidth * 0.12);
+      var horizontalProgress = centeredProgress < 0.5
+        ? centeredProgress * 2
+        : (1 - centeredProgress) * 2;
+      var direction = centeredProgress < 0.5 ? -1 : 1;
+      var translateX = direction * distance * (1 - horizontalProgress);
+      var rotation = 8 * (1 - centeredProgress * 2);
+      var scale = 0.97 + horizontalProgress * 0.03;
+
+      card.style.setProperty("--contact-cta-x", translateX.toFixed(2) + "px");
+      card.style.setProperty("--contact-cta-rotation", rotation.toFixed(2) + "deg");
+      card.style.setProperty("--contact-cta-scale", scale.toFixed(3));
+      frameRequested = false;
+    }
+
+    function requestCardPosition() {
+      if (frameRequested) return;
+      frameRequested = true;
+      window.requestAnimationFrame(updateCardPosition);
+    }
+
+    window.addEventListener("scroll", requestCardPosition, { passive: true });
+    window.addEventListener("resize", requestCardPosition);
+    updateCardPosition();
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initTheme();
     initHamburger();
     markActiveLink();
     initBackToTop();
+    initContactCardMotion();
   });
 })();
