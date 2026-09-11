@@ -55,12 +55,10 @@
     var url = window.location.href;
     var text = article.title;
     var whatsappUrl = "https://wa.me/?text=" + encodeURIComponent(text + " " + url);
-    var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text) + "&url=" + encodeURIComponent(url);
 
     wrap.innerHTML =
       '<span class="share-buttons__label">Condividi:</span>' +
       '<a class="share-btn" href="' + whatsappUrl + '" target="_blank" rel="noopener">WhatsApp</a>' +
-      '<a class="share-btn" href="' + twitterUrl + '" target="_blank" rel="noopener">X / Twitter</a>' +
       '<button type="button" class="share-btn" data-copy-link>Copia link</button>';
 
     var copyBtn = wrap.querySelector("[data-copy-link]");
@@ -89,7 +87,7 @@
       ? '<img class="article-card__image" src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '" loading="lazy">'
       : '<div class="article-card__image"></div>';
     return (
-      '<article class="article-card">' +
+      '<article class="article-card" data-article-url="article.html?slug=' + encodeURIComponent(article.slug) + '" tabindex="0" role="link">' +
         img +
         '<div class="article-card__body">' +
           '<a class="article-card__category" href="articles.html?category=' + encodeURIComponent(article.category || "Blog") + '">' + escapeHtml(article.category || "Blog") + "</a>" +
@@ -98,6 +96,23 @@
         "</div>" +
       "</article>"
     );
+  }
+
+  function initRelatedCardNavigation() {
+    document.addEventListener("click", function (event) {
+      var card = event.target.closest("[data-article-url]");
+      if (!card) return;
+      event.preventDefault();
+      window.location.href = card.getAttribute("data-article-url");
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      var card = event.target.closest("[data-article-url]");
+      if (!card || event.target !== card) return;
+      event.preventDefault();
+      window.location.href = card.getAttribute("data-article-url");
+    });
   }
 
   function renderRelatedArticles(current, allArticles) {
@@ -182,4 +197,5 @@
   }
 
   document.addEventListener("DOMContentLoaded", init);
+  document.addEventListener("DOMContentLoaded", initRelatedCardNavigation);
 })();

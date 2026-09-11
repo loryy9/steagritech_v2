@@ -35,17 +35,12 @@ window.BLOG_ARTICLES = [
     readTime: "5 min di lettura",
     image: "assets/KRONE_Swativo_T_1040_Pro_field_operation_2-1-1536x821.webp",
     featured: true,
-    content: `<p>Prima dell'avvio della stagione agricola, una manutenzione accurata del trattore riduce drasticamente il rischio di fermi macchina nei momenti più critici.</p>
+    content: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo nec arcu fermentum posuere. Praesent euismod, nibh at tincidunt luctus, nisl erat ullamcorper massa, vitae facilisis erat urna sed justo.</p>
 
-<h2>I controlli principali</h2>
-<ul>
-  <li>Livelli e qualità di olio motore e filtri</li>
-  <li>Stato di pneumatici e pressione di gonfiaggio</li>
-  <li>Tenuta del circuito idraulico</li>
-  <li>Batteria e impianto elettrico</li>
-</ul>
+<h2>Lorem ipsum dolor sit amet</h2>
+<p>Curabitur consequat, sapien non consequat tincidunt, erat nisl commodo massa, sed tincidunt libero ipsum non augue. Suspendisse potenti. Donec finibus, metus sed feugiat ultrices, mi purus varius sem, vitae luctus nulla libero at erat.</p>
 
-<p>Una pianificazione attenta della manutenzione permette di lavorare con continuità durante i periodi di maggior carico.</p>`
+<p>Maecenas eget sem sed arcu tincidunt consequat. Nam bibendum, sapien a commodo porta, massa justo cursus nisl, a efficitur sem tortor at erat.</p>`
   },
   {
     slug: "attrezzature-lavorazione-terreno-guida",
@@ -58,12 +53,12 @@ window.BLOG_ARTICLES = [
     imagePosition: "75% 35%", // il trattore, nella foto, è spostato verso destra: qui inquadriamo su di lui invece che sul centro della foto
     imageZoom: 1.15,
     featured: true,
-    content: `<p>La scelta dell'attrezzatura giusta per la lavorazione del terreno dipende da diversi fattori: tipo di suolo, coltura successiva e potenza disponibile.</p>
+    content: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo nec arcu fermentum posuere. Praesent euismod, nibh at tincidunt luctus, nisl erat ullamcorper massa, vitae facilisis erat urna sed justo.</p>
 
-<h2>Le opzioni più diffuse</h2>
-<p>Tra le soluzioni più utilizzate troviamo aratri, erpici a dischi e coltivatori, ognuno con vantaggi specifici in termini di profondità di lavoro e consumo energetico.</p>
+  <h2>Lorem ipsum dolor sit amet</h2>
+  <p>Curabitur consequat, sapien non consequat tincidunt, erat nisl commodo massa, sed tincidunt libero ipsum non augue. Suspendisse potenti. Donec finibus, metus sed feugiat ultrices, mi purus varius sem, vitae luctus nulla libero at erat.</p>
 
-<blockquote>Investire nell'attrezzatura corretta significa risparmiare tempo e carburante in ogni passaggio.</blockquote>`
+  <p>Maecenas eget sem sed arcu tincidunt consequat. Nam bibendum, sapien a commodo porta, massa justo cursus nisl, a efficitur sem tortor at erat.</p>`
   },
   {
     slug: "macchine-raccolta-efficienza-campo",
@@ -74,16 +69,12 @@ window.BLOG_ARTICLES = [
     readTime: "4 min di lettura",
     image: "assets/KRONE_Swativo_T_1040_Pro_field_operation_2-1-1536x821.webp",
     featured: true,
-    content: `<p>L'efficienza delle macchine da raccolta dipende in gran parte dalla corretta regolazione prima e durante il lavoro in campo.</p>
+    content: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo nec arcu fermentum posuere. Praesent euismod, nibh at tincidunt luctus, nisl erat ullamcorper massa, vitae facilisis erat urna sed justo.</p>
 
-<h2>Punti chiave</h2>
-<ul>
-  <li>Velocità di avanzamento adeguata alla coltura</li>
-  <li>Regolazione di testata e organi di trebbiatura</li>
-  <li>Controllo costante delle perdite al suolo</li>
-</ul>
+<h2>Lorem ipsum dolor sit amet</h2>
+<p>Curabitur consequat, sapien non consequat tincidunt, erat nisl commodo massa, sed tincidunt libero ipsum non augue. Suspendisse potenti. Donec finibus, metus sed feugiat ultrices, mi purus varius sem, vitae luctus nulla libero at erat.</p>
 
-<p>Piccoli accorgimenti quotidiani possono tradursi in una raccolta significativamente più redditizia.</p>`
+<p>Maecenas eget sem sed arcu tincidunt consequat. Nam bibendum, sapien a commodo porta, massa justo cursus nisl, a efficitur sem tortor at erat.</p>`
   },
   {
     slug: "agronomia-rotazione-colture-benefici",
@@ -94,12 +85,12 @@ window.BLOG_ARTICLES = [
     readTime: "7 min di lettura",
     image: "assets/KRONE_Swativo_T_1040_Pro_field_operation_2-1-1536x821.webp",
     featured: true,
-    content: `<p>La rotazione delle colture resta una delle pratiche agronomiche più efficaci per mantenere il suolo fertile nel tempo.</p>
+    content: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo nec arcu fermentum posuere. Praesent euismod, nibh at tincidunt luctus, nisl erat ullamcorper massa, vitae facilisis erat urna sed justo.</p>
 
-<h2>Perché funziona</h2>
-<p>Alternare colture con esigenze nutritive e apparati radicali diversi aiuta a limitare l'accumulo di parassiti specifici e a migliorare la struttura del terreno.</p>
+  <h2>Lorem ipsum dolor sit amet</h2>
+  <p>Curabitur consequat, sapien non consequat tincidunt, erat nisl commodo massa, sed tincidunt libero ipsum non augue. Suspendisse potenti. Donec finibus, metus sed feugiat ultrices, mi purus varius sem, vitae luctus nulla libero at erat.</p>
 
-<p>Pianificare la rotazione su un orizzonte di più anni permette di ottenere risultati misurabili sia in termini di resa che di riduzione degli input chimici.</p>`
+  <p>Maecenas eget sem sed arcu tincidunt consequat. Nam bibendum, sapien a commodo porta, massa justo cursus nisl, a efficitur sem tortor at erat.</p>`
   },
   {
     slug: "irrigazione-di-precisione-risparmio-idrico",
@@ -110,16 +101,12 @@ window.BLOG_ARTICLES = [
     readTime: "5 min di lettura",
     image: "assets/KRONE_Swativo_T_1040_Pro_field_operation_2-1-1536x821.webp",
     featured: true,
-    content: `<p>L'irrigazione di precisione consente di distribuire l'acqua solo dove e quando serve realmente, riducendo gli sprechi.</p>
+    content: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo nec arcu fermentum posuere. Praesent euismod, nibh at tincidunt luctus, nisl erat ullamcorper massa, vitae facilisis erat urna sed justo.</p>
 
-<h2>Tecnologie disponibili</h2>
-<ul>
-  <li>Sensori di umidità del terreno</li>
-  <li>Centraline di programmazione automatica</li>
-  <li>Dati meteo integrati per adattare gli interventi</li>
-</ul>
+<h2>Lorem ipsum dolor sit amet</h2>
+<p>Curabitur consequat, sapien non consequat tincidunt, erat nisl commodo massa, sed tincidunt libero ipsum non augue. Suspendisse potenti. Donec finibus, metus sed feugiat ultrices, mi purus varius sem, vitae luctus nulla libero at erat.</p>
 
-<p>L'investimento iniziale viene spesso ripagato in poche stagioni grazie al minor consumo idrico ed energetico.</p>`
+<p>Maecenas eget sem sed arcu tincidunt consequat. Nam bibendum, sapien a commodo porta, massa justo cursus nisl, a efficitur sem tortor at erat.</p>`
   },
   {
     slug: "sicurezza-in-cantiere-agricolo-regole-base",
@@ -130,15 +117,11 @@ window.BLOG_ARTICLES = [
     readTime: "3 min di lettura",
     image: "assets/KRONE_Swativo_T_1040_Pro_field_operation_2-1-1536x821.webp",
     featured: true,
-    content: `<p>La sicurezza sul lavoro in ambito agricolo richiede attenzione costante, soprattutto quando si opera con macchine complesse.</p>
+    content: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo nec arcu fermentum posuere. Praesent euismod, nibh at tincidunt luctus, nisl erat ullamcorper massa, vitae facilisis erat urna sed justo.</p>
 
-<h2>Buone pratiche</h2>
-<ul>
-  <li>Uso corretto dei dispositivi di protezione individuale</li>
-  <li>Controlli periodici su macchine e attrezzature</li>
-  <li>Formazione continua del personale</li>
-</ul>
+<h2>Lorem ipsum dolor sit amet</h2>
+<p>Curabitur consequat, sapien non consequat tincidunt, erat nisl commodo massa, sed tincidunt libero ipsum non augue. Suspendisse potenti. Donec finibus, metus sed feugiat ultrices, mi purus varius sem, vitae luctus nulla libero at erat.</p>
 
-<p>Adottare procedure chiare riduce sensibilmente il rischio di infortuni durante le fasi più intense della stagione.</p>`
+<p>Maecenas eget sem sed arcu tincidunt consequat. Nam bibendum, sapien a commodo porta, massa justo cursus nisl, a efficitur sem tortor at erat.</p>`
   }
 ];

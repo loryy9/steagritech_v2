@@ -59,6 +59,10 @@
     return decl.length ? ' style="' + decl.join(";") + '"' : "";
   }
 
+  function articleCardAttrs(article) {
+    return ' data-article-url="article.html?slug=' + encodeURIComponent(article.slug) + '" tabindex="0" role="link"';
+  }
+
   function cardTemplate(article, sizeClass, showArrow) {
     var img = article.image
       ? '<img class="article-card__image" src="' +
@@ -73,7 +77,7 @@
     return (
       '<article class="article-card' +
       (sizeClass ? " article-card--" + sizeClass : "") +
-      '">' +
+      '"' + articleCardAttrs(article) + '>' +
       img +
       '<div class="article-card__body">' +
       '<a class="article-card__category" href="articles.html?category=' +
@@ -104,7 +108,7 @@
       : "";
 
     return (
-      '<div class="featured-card">' +
+      '<div class="featured-card"' + articleCardAttrs(article) + '>' +
         img +
         '<div class="featured-card__overlay">' +
           '<span class="featured-card__category">' + escapeHtml(article.category || "Blog") + "</span>" +
@@ -123,7 +127,7 @@
       : "";
 
     return (
-      '<article class="glass-card' + (sizeClass ? " glass-card--" + sizeClass : "") + '">' +
+      '<article class="glass-card' + (sizeClass ? " glass-card--" + sizeClass : "") + '"' + articleCardAttrs(article) + '>' +
         '<div class="glass-card__media">' +
           img +
         "</div>" +
@@ -150,7 +154,7 @@
       : '<div class="compact-card__image"></div>';
 
     return (
-      '<div class="compact-card">' +
+      '<div class="compact-card"' + articleCardAttrs(article) + '>' +
         img +
         '<div class="compact-card__body">' +
           '<span class="compact-card__category">' + escapeHtml(article.category || "Blog") + "</span>" +
@@ -185,6 +189,23 @@
 
   function getArticles() {
     return Array.isArray(window.BLOG_ARTICLES) ? window.BLOG_ARTICLES : [];
+  }
+
+  function initCardNavigation() {
+    document.addEventListener("click", function (event) {
+      var card = event.target.closest("[data-article-url]");
+      if (!card) return;
+      event.preventDefault();
+      window.location.href = card.getAttribute("data-article-url");
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      var card = event.target.closest("[data-article-url]");
+      if (!card || event.target !== card) return;
+      event.preventDefault();
+      window.location.href = card.getAttribute("data-article-url");
+    });
   }
 
   /* Stessa soglia usata dal CSS per far scattare i mosaici (vedi
@@ -430,6 +451,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    initCardNavigation();
     renderFeatured();
     renderHighlighted();
     initFeaturedResponsive();
