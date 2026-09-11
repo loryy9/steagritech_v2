@@ -142,9 +142,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .navbar__inner {
   height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-4);
 }
 
@@ -164,6 +164,14 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: flex;
   align-items: center;
   gap: var(--space-6);
+  justify-self: center;
+}
+
+.navbar__social {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: var(--space-2);
 }
 
 .navbar__link {
@@ -266,6 +274,20 @@ ul { margin: 0; padding: 0; list-style: none; }
 
   .navbar--logo-right .navbar__inner {
     flex-direction: row-reverse;
+  }
+}
+
+@media (max-width: 699px) {
+  .navbar__inner {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .navbar__menu {
+    gap: var(--space-3);
+  }
+
+  .navbar__social {
+    gap: 0;
   }
 }
 
