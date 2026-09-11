@@ -207,7 +207,7 @@ Cambia quella classe (stessa su tutte le pagine, per coerenza) per spostare il l
 
 ## Ricerca e categorie
 
-Nella pagina Articoli c'è una barra di ricerca che filtra in tempo reale su titolo, riassunto, categoria e autore. Ogni categoria (mostrata come etichetta sulle card e sull'articolo) è anche un link a `articles.html?category=NomeCategoria`, che apre l'elenco filtrato e aggiorna il titolo e l'evidenziazione del menu. Quando un filtro (ricerca o categoria) è attivo, il "carica altri" si disattiva e vengono mostrati subito tutti i risultati.
+Nella pagina Articoli c'è una barra di ricerca che filtra in tempo reale su titolo, riassunto e categoria. Ogni categoria (mostrata come etichetta sulle card e sull'articolo) è anche un link a `articles.html?category=NomeCategoria`, che apre l'elenco filtrato e aggiorna il titolo e l'evidenziazione del menu. Quando un filtro (ricerca o categoria) è attivo, il "carica altri" si disattiva e vengono mostrati subito tutti i risultati.
 
 ## Condivisione, tempo di lettura e articoli correlati
 
