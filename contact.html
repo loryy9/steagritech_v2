@@ -1,188 +1,327 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=index.html">
-  <title>Contatti · Il Mio Blog</title>
-  <meta name="description" content="Scrivici per domande, collaborazioni o proposte.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contatti · Agritech</title>
+    <meta
+      name="description"
+      content="Seguici sui social o scrivici via email: restiamo in contatto."
+    />
 
-  <!-- Sostituisci https://www.tuo-dominio.it con il tuo dominio reale prima di pubblicare -->
-  <link rel="canonical" href="https://www.tuo-dominio.it/contact.html">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Il Mio Blog">
-  <meta property="og:locale" content="it_IT">
-  <meta property="og:title" content="Contatti · Il Mio Blog">
-  <meta property="og:description" content="Scrivici per domande, collaborazioni o proposte.">
-  <meta property="og:url" content="https://www.tuo-dominio.it/contact.html">
-  <meta property="og:image" content="https://placehold.co/1200x630/2e6b3e/ffffff?text=Il+Mio+Blog">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Contatti · Il Mio Blog">
-  <meta name="twitter:description" content="Scrivici per domande, collaborazioni o proposte.">
-  <meta name="twitter:image" content="https://placehold.co/1200x630/2e6b3e/ffffff?text=Il+Mio+Blog">
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/style.css">
-  <script>
-    window.location.replace("index.html");
-  </script>
-</head>
-<body>
+    <!-- Sostituisci https://www.tuo-dominio.it con il tuo dominio reale prima di pubblicare -->
+    <link rel="canonical" href="https://www.tuo-dominio.it/contact.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Agritech" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:title" content="Contatti · Agritech" />
+    <meta
+      property="og:description"
+      content="Seguici sui social o scrivici via email: restiamo in contatto."
+    />
+    <meta property="og:url" content="https://www.tuo-dominio.it/contact.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Contatti · Agritech" />
+    <meta
+      name="twitter:description"
+      content="Seguici sui social o scrivici via email: restiamo in contatto."
+    />
+    <link rel="icon" href="assets/ico/favicon.png" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="navbar navbar--logo-left navbar--con-categorie">
+      <div class="container navbar__inner">
+        <a href="index.html" class="navbar__logo">
+          <img src="assets/logo.png" alt="Logo del blog" />
+        </a>
 
-  <header class="navbar navbar--logo-left">
-    <div class="container navbar__inner">
-      <a href="index.html" class="navbar__logo">
-        <img src="assets/logo.svg" alt="Logo del blog">
-        <span>Il Mio Blog</span>
-      </a>
+        <nav class="navbar__menu" data-navbar-menu>
+          <a href="index.html" class="navbar__link">Home</a>
+          <a href="articles.html" class="navbar__link">Articoli</a>
+          <a href="contact.html" class="navbar__link">Contatti</a>
 
-      <nav class="navbar__menu" data-navbar-menu>
-        <a href="index.html" class="navbar__link">Home</a>
-        <a href="articles.html" class="navbar__link">Articoli</a>
-        <a href="contact.html" class="navbar__link">Contatti</a>
-      </nav>
+          <div class="navbar__menu-section navbar__menu-categories">
+            <span class="navbar__menu-label">Categorie</span>
+            <a href="articles.html?category=Trattori" class="navbar__link navbar__menu-category">Trattori</a>
+            <a href="articles.html?category=Attrezzature" class="navbar__link navbar__menu-category">Attrezzature</a>
+            <a href="articles.html?category=Macchine%20da%20raccolta" class="navbar__link navbar__menu-category">Macchine da raccolta</a>
+            <a href="articles.html?category=Agronomia" class="navbar__link navbar__menu-category">Agronomia</a>
+            <a href="articles.html?category=Altro" class="navbar__link navbar__menu-category">Altro</a>
+          </div>
 
-      <div class="navbar__actions">
-        <button class="theme-toggle" data-theme-toggle aria-label="Cambia tema">🌙</button>
+          <div class="navbar__menu-section navbar__menu-social">
+            <a href="https://www.instagram.com/ste.agritech/" class="navbar__menu-social-link" target="_blank" rel="noopener" aria-label="Instagram">
+              <img class="navbar__social-logo" src="assets/loghi_social/logo_instagram.png" alt="">
+            </a>
+            <a href="https://www.facebook.com/people/steagritech/61561657596577/" class="navbar__menu-social-link" target="_blank" rel="noopener" aria-label="Facebook">
+              <img class="navbar__social-logo" src="assets/loghi_social/logo_facebook.png" alt="">
+            </a>
+            <a href="https://www.youtube.com/@steagritech" class="navbar__menu-social-link" target="_blank" rel="noopener" aria-label="YouTube">
+              <img class="navbar__social-logo" src="assets/loghi_social/logo_youtube.png" alt="">
+            </a>
+            <a href="https://www.tiktok.com/@ste_agritech?_t=ZN-8yzaH3EUsYo&_r=1" class="navbar__menu-social-link" target="_blank" rel="noopener" aria-label="TikTok">
+              <img class="navbar__social-logo" src="assets/loghi_social/logo_tiktok.png" alt="">
+            </a>
+          </div>
+        </nav>
+
+        <nav class="navbar__social" aria-label="Social">
+          <a
+            href="https://www.instagram.com/ste.agritech/"
+            class="navbar__link navbar__social-link"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              class="navbar__social-logo"
+              src="assets/loghi_social/logo_instagram.png"
+              alt="Instagram"
+            />
+          </a>
+          <a
+            href="https://www.facebook.com/people/steagritech/61561657596577/"
+            class="navbar__link navbar__social-link"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              class="navbar__social-logo"
+              src="assets/loghi_social/logo_facebook.png"
+              alt="Facebook"
+            />
+          </a>
+          <a
+            href="https://www.youtube.com/@steagritech"
+            class="navbar__link navbar__social-link"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              class="navbar__social-logo"
+              src="assets/loghi_social/logo_youtube.png"
+              alt="YouTube"
+            />
+          </a>
+          <a
+            href="https://www.tiktok.com/@ste_agritech?_t=ZN-8yzaH3EUsYo&_r=1"
+            class="navbar__link navbar__social-link"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              class="navbar__social-logo"
+              src="assets/loghi_social/logo_tiktok.png"
+              alt="TikTok"
+            />
+          </a>
+        </nav>
+
         <button class="hamburger" data-hamburger aria-label="Apri il menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
-    </div>
-  </header>
 
-  <main>
-    <section class="section">
+      <nav class="categorie" aria-label="Categorie degli articoli">
+        <div class="container categorie__inner">
+          <a href="articles.html?category=Trattori" class="categorie__link"
+            >Trattori</a
+          >
+          <a href="articles.html?category=Attrezzature" class="categorie__link"
+            >Attrezzature</a
+          >
+          <a
+            href="articles.html?category=Macchine%20da%20raccolta"
+            class="categorie__link"
+            >Macchine da raccolta</a
+          >
+          <a href="articles.html?category=Agronomia" class="categorie__link"
+            >Agronomia</a
+          >
+          <a href="articles.html?category=Altro" class="categorie__link"
+            >Altro</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <div class="contact-hero">
+            <p class="hero__eyebrow">Restiamo in contatto</p>
+            <h1>Un campo, una passione, una community: parliamone insieme.</h1>
+            <p class="lead">
+              Seguici sui social per novità e curiosità dal mondo agricolo,
+              oppure scrivimi direttamente via email.
+            </p>
+          </div>
+
+          <div class="contact-links">
+            <a
+              class="contact-link"
+              href="https://www.instagram.com/ste.agritech/"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="contact-link__icon"
+                ><img src="assets/loghi_social/logo_instagram.png" alt=""
+              /></span>
+              <span class="contact-link__text">
+                <span class="contact-link__name">Instagram</span>
+                <span class="contact-link__value">@ste.agritech</span>
+              </span>
+            </a>
+
+            <a class="contact-link" href="mailto:stefano.agritech@gmail.com">
+              <span class="contact-link__icon">✉️</span>
+              <span class="contact-link__text">
+                <span class="contact-link__name">Email</span>
+                <span class="contact-link__value"
+                  >stefano.agritech@gmail.com</span
+                >
+              </span>
+            </a>
+          </div>
+
+          <div class="contact-follow">
+            <p>Seguimi sui social</p>
+            <div class="contact-follow__icons">
+              <a
+                href="https://www.instagram.com/ste.agritech/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+              >
+                <img src="assets/loghi_social/logo_instagram.png" alt="" />
+              </a>
+              <a
+                href="https://www.facebook.com/people/steagritech/61561657596577/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Facebook"
+              >
+                <img src="assets/loghi_social/logo_facebook.png" alt="" />
+              </a>
+              <a
+                href="https://www.youtube.com/@steagritech"
+                target="_blank"
+                rel="noopener"
+                aria-label="YouTube"
+              >
+                <img src="assets/loghi_social/logo_youtube.png" alt="" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@ste_agritech?_t=ZN-8yzaH3EUsYo&_r=1"
+                target="_blank"
+                rel="noopener"
+                aria-label="TikTok"
+              >
+                <img src="assets/loghi_social/logo_tiktok.png" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <p></p>
+          <h3>
+            qui sotto potremmo mettere qualcosa tipo boh la solita roba dei tui
+            numeri sui social, o se riusciamo collegamento a qualche
+            rell/youtube
+          </h3>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
       <div class="container">
-        <div class="section-header text-center">
-          <h1>Contattaci</h1>
-          <p>Domande, proposte di collaborazione o semplice curiosità: scrivici pure.</p>
-        </div>
-
-        <div class="contact-layout">
+        <div class="footer__grid">
           <div>
-            <div class="contact-info__item">
-              <div class="contact-info__icon">✉️</div>
-              <div>
-                <h3>Email</h3>
-                <p class="text-muted">info@ilmioblog.it</p>
-              </div>
-            </div>
-            <div class="contact-info__item">
-              <div class="contact-info__icon">📍</div>
-              <div>
-                <h3>Sede</h3>
-                <p class="text-muted">Via Esempio 1, 00100 Roma (RM)</p>
-              </div>
-            </div>
-            <div class="contact-info__item">
-              <div class="contact-info__icon">📞</div>
-              <div>
-                <h3>Telefono</h3>
-                <p class="text-muted">+39 000 000 0000</p>
-              </div>
-            </div>
-
-            <!-- Banner pubblicitario (vedi esempio nel README) -->
-            <div class="ad-banner ad-banner--rectangle">
-              <span class="ad-banner__label">Spazio pubblicitario 300×250</span>
+            <a href="index.html" class="footer__logo">
+              <img src="assets/logo%20bianco.png" alt="Agritech" />
+            </a>
+            <p class="footer__tagline">
+              Notizie, guide e approfondimenti per chi lavora la terra ogni
+              giorno.
+            </p>
+            <div class="footer__social">
+              <a
+                href="https://www.instagram.com/ste.agritech/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+              >
+                <img src="assets/loghi_social/logo_instagram.png" alt="" />
+              </a>
+              <a
+                href="https://www.facebook.com/people/steagritech/61561657596577/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Facebook"
+              >
+                <img src="assets/loghi_social/logo_facebook.png" alt="" />
+              </a>
+              <a
+                href="https://www.youtube.com/@steagritech"
+                target="_blank"
+                rel="noopener"
+                aria-label="YouTube"
+              >
+                <img src="assets/loghi_social/logo_youtube.png" alt="" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@ste_agritech?_t=ZN-8yzaH3EUsYo&_r=1"
+                target="_blank"
+                rel="noopener"
+                aria-label="TikTok"
+              >
+                <img src="assets/loghi_social/logo_tiktok.png" alt="" />
+              </a>
             </div>
           </div>
-
           <div>
-            <p class="form-feedback" data-contact-feedback></p>
-
-            <form data-contact-form novalidate>
-              <div class="form-group">
-                <label for="name">Nome e cognome</label>
-                <input class="form-control" type="text" id="name" name="name" required>
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input class="form-control" type="email" id="email" name="email" required>
-              </div>
-              <div class="form-group">
-                <label for="subject">Oggetto</label>
-                <input class="form-control" type="text" id="subject" name="subject">
-              </div>
-              <div class="form-group">
-                <label for="message">Messaggio</label>
-                <textarea class="form-control" id="message" name="message" required></textarea>
-              </div>
-              <div class="form-group form-group--checkbox">
-                <label class="form-checkbox">
-                  <input type="checkbox" id="privacy" name="privacy" required>
-                  <span>Ho letto e accetto l'Informativa Privacy</span>
-                </label>
-              </div>
-              <button type="submit" class="btn btn--primary btn--block">Invia messaggio</button>
-              <p class="form-note">Questo form è solo dimostrativo: per renderlo funzionante collega l'attributo <code>action</code> a un servizio come Formspree oppure a un tuo backend (vedi <code>js/contact.js</code>).</p>
-            </form>
+            <div class="footer__title">Esplora</div>
+            <ul class="footer__links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="articles.html">Articoli</a></li>
+              <li><a href="contact.html">Contatti</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer__title">Categorie</div>
+            <ul class="footer__links">
+              <li><a href="articles.html?category=Trattori">Trattori</a></li>
+              <li>
+                <a href="articles.html?category=Attrezzature">Attrezzature</a>
+              </li>
+              <li>
+                <a href="articles.html?category=Macchine%20da%20raccolta"
+                  >Macchine da raccolta</a
+                >
+              </li>
+              <li><a href="articles.html?category=Agronomia">Agronomia</a></li>
+              <li><a href="articles.html?category=Altro">Altro</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer__title">Legale</div>
+            <ul class="footer__links">
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="cookie.html">Cookie Policy</a></li>
+              <li><a href="#" data-manage-cookies>Gestisci cookie</a></li>
+            </ul>
           </div>
         </div>
+        <div class="footer__bottom">
+          <span>&copy; 2026 Agritech. Tutti i diritti riservati.</span>
+        </div>
       </div>
-    </section>
-  </main>
+    </footer>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div>
-          <a href="index.html" class="footer__logo">
-            <img src="assets/logo%20bianco.png" alt="Agritech">
-          </a>
-          <p class="footer__tagline">Notizie, guide e approfondimenti per chi lavora la terra ogni giorno.</p>
-          <div class="footer__social">
-            <a href="https://www.instagram.com/ste.agritech/" target="_blank" rel="noopener" aria-label="Instagram">
-              <img src="assets/loghi_social/logo_instagram.png" alt="">
-            </a>
-            <a href="https://www.facebook.com/people/steagritech/61561657596577/" target="_blank" rel="noopener" aria-label="Facebook">
-              <img src="assets/loghi_social/logo_facebook.png" alt="">
-            </a>
-            <a href="https://www.youtube.com/@steagritech" target="_blank" rel="noopener" aria-label="YouTube">
-              <img src="assets/loghi_social/logo_youtube.png" alt="">
-            </a>
-            <a href="https://www.tiktok.com/@ste_agritech?_t=ZN-8yzaH3EUsYo&_r=1" target="_blank" rel="noopener" aria-label="TikTok">
-              <img src="assets/loghi_social/logo_tiktok.png" alt="">
-            </a>
-          </div>
-        </div>
-        <div>
-          <div class="footer__title">Esplora</div>
-          <ul class="footer__links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="articles.html">Articoli</a></li>
-            <li><a href="contact.html">Contatti</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer__title">Categorie</div>
-          <ul class="footer__links">
-            <li><a href="articles.html?category=Trattori">Trattori</a></li>
-            <li><a href="articles.html?category=Attrezzature">Attrezzature</a></li>
-            <li><a href="articles.html?category=Macchine%20da%20raccolta">Macchine da raccolta</a></li>
-            <li><a href="articles.html?category=Agronomia">Agronomia</a></li>
-            <li><a href="articles.html?category=Altro">Altro</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer__title">Legale</div>
-          <ul class="footer__links">
-            <li><span>Privacy Policy</span></li>
-            <li><span>Cookie Policy</span></li>
-            <li><a href="#" data-manage-cookies>Gestisci cookie</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <span>&copy; 2026 Agritech. Tutti i diritti riservati.</span>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
-  <script src="js/cookie-consent.js"></script>
-  <script src="js/contact.js"></script>
-  <script src="js/ads.js"></script>
-</body>
+    <script src="js/main.js"></script>
+    <script src="js/cookie-consent.js"></script>
+    <script src="js/ads.js"></script>
+  </body>
 </html>
