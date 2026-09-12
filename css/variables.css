@@ -7,28 +7,35 @@
 :root {
   /* ---- Tema chiaro (default) ---- */
   --color-bg: #ffffff;
-  --color-bg-alt: #f5f6f8;
+  --color-bg-alt: #f0f4ea;
   --color-surface: #ffffff;
-  --color-text: #1a1c1e;
-  --color-text-muted: #5c626b;
-  --color-border: #e2e4e8;
+  --color-text: #1b2117;
+  --color-text-muted: #5a6353;
+  --color-border: #dbe3d3;
 
-  --color-primary: #2f6fed;
-  --color-primary-hover: #244fb3;
+  --color-primary: #2e6b3e;
+  --color-primary-hover: #234f2f;
   --color-primary-contrast: #ffffff;
-  --color-accent: #ed6a2f;
+  --color-accent: #c98a2c;
 
-  --color-success: #2f9e5a;
-  --color-danger: #d64545;
+  --color-success: #1f7a6c;
+  --color-danger: #c1443a;
 
-  --shadow-sm: 0 1px 2px rgba(16, 20, 24, 0.06);
-  --shadow-md: 0 4px 12px rgba(16, 20, 24, 0.08);
-  --shadow-lg: 0 12px 32px rgba(16, 20, 24, 0.12);
+  --shadow-sm: 0 1px 2px rgba(20, 26, 16, 0.07);
+  --shadow-md: 0 4px 12px rgba(20, 26, 16, 0.09);
+  --shadow-lg: 0 12px 32px rgba(20, 26, 16, 0.14);
 
   /* ---- Placeholder banner pubblicitari ---- */
-  --ad-bg: #eef0f3;
-  --ad-border: #c7cbd1;
-  --ad-text: #8a8f98;
+  --ad-bg: #eef1e8;
+  --ad-border: #cdd6c2;
+  --ad-text: #7c8572;
+
+  /* ---- Footer: fascia verde di marca, fissa (non segue il tema chiaro/scuro) ---- */
+  --footer-bg: #16301d;
+  --footer-bg-alt: #1e3d27;
+  --footer-text: #f3f5ef;
+  --footer-text-muted: #b9c4ae;
+  --footer-border: rgba(255, 255, 255, 0.14);
 
   /* ---- Tipografia ---- */
   --font-base: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
@@ -76,48 +83,48 @@
 
 /* ---- Tema scuro: attivato con [data-theme="dark"] su <html> ---- */
 :root[data-theme="dark"] {
-  --color-bg: #14161a;
-  --color-bg-alt: #1b1e23;
-  --color-surface: #1f2229;
-  --color-text: #eef0f3;
-  --color-text-muted: #a4aab3;
-  --color-border: #2b2f37;
+  --color-bg: #10140d;
+  --color-bg-alt: #161c11;
+  --color-surface: #1a2115;
+  --color-text: #eef1e8;
+  --color-text-muted: #a2ab97;
+  --color-border: #2c3423;
 
-  --color-primary: #5c8dff;
-  --color-primary-hover: #82a6ff;
-  --color-primary-contrast: #0c0d0f;
-  --color-accent: #ff8a5c;
+  --color-primary: #6cbf72;
+  --color-primary-hover: #8dd393;
+  --color-primary-contrast: #0c0f0a;
+  --color-accent: #e0a83f;
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
   --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
 
-  --ad-bg: #1b1e23;
-  --ad-border: #33383f;
-  --ad-text: #767c86;
+  --ad-bg: #161c11;
+  --ad-border: #333d29;
+  --ad-text: #7a8470;
 }
 
 /* ---- Se l'utente non ha ancora scelto un tema, segui il sistema ---- */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]):not([data-theme="dark"]) {
-    --color-bg: #14161a;
-    --color-bg-alt: #1b1e23;
-    --color-surface: #1f2229;
-    --color-text: #eef0f3;
-    --color-text-muted: #a4aab3;
-    --color-border: #2b2f37;
+    --color-bg: #10140d;
+    --color-bg-alt: #161c11;
+    --color-surface: #1a2115;
+    --color-text: #eef1e8;
+    --color-text-muted: #a2ab97;
+    --color-border: #2c3423;
 
-    --color-primary: #5c8dff;
-    --color-primary-hover: #82a6ff;
-    --color-primary-contrast: #0c0d0f;
-    --color-accent: #ff8a5c;
+    --color-primary: #6cbf72;
+    --color-primary-hover: #8dd393;
+    --color-primary-contrast: #0c0f0a;
+    --color-accent: #e0a83f;
 
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
     --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
 
-    --ad-bg: #1b1e23;
-    --ad-border: #33383f;
-    --ad-text: #767c86;
+    --ad-bg: #161c11;
+    --ad-border: #333d29;
+    --ad-text: #7a8470;
   }
 }
