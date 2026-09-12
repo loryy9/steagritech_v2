@@ -345,7 +345,7 @@ con il tuo ID di misurazione reale (lo trovi su analytics.google.com dopo aver c
 
 **Nota sul tracciamento dei banner pubblicitari**: `trackBannerClick()` (vedi sopra) chiama `gtag`, che esiste solo se Analytics è stato caricato — quindi anche i click sui banner vengono tracciati automaticamente solo se l'utente ha accettato i cookie, senza bisogno di altre modifiche.
 
-**Importante — questo è materiale legale, non solo tecnico**: il testo del banner e le pagine `privacy.html` e `cookie.html` sono uno **scheletro di partenza**, non un testo verificato da un legale. Prima di pubblicare il sito, vanno completate con i tuoi dati reali (titolare del trattamento, finalità, ecc. — le parti tra `[ ]` te lo ricordano) oppure sostituite con un servizio come [Iubenda](https://www.iubenda.com), che genera sia il testo legale che un banner equivalente già pronto per il mercato italiano.
+**Importante — questo è materiale legale, non solo tecnico**: il testo del banner e le pagine `privacy.html` e `cookie.html` (già collegate nel footer, in una nuova colonna "Legale") sono uno **scheletro di partenza**, non un testo verificato da un legale. Prima di pubblicare il sito, vanno completate con i tuoi dati reali (titolare del trattamento, finalità, ecc. — le parti tra `[ ]` te lo ricordano) oppure sostituite con un servizio come [Iubenda](https://www.iubenda.com), che genera sia il testo legale che un banner equivalente già pronto per il mercato italiano.
 
 ## Form contatti
 
@@ -354,7 +354,7 @@ con il tuo ID di misurazione reale (lo trovi su analytics.google.com dopo aver c
 - collega `action` del form a un servizio come [Formspree](https://formspree.io) o [Getform](https://getform.io), oppure
 - sostituisci la logica in `js/contact.js` con una `fetch()` verso un tuo backend.
 
-Il form include anche una checkbox obbligatoria di accettazione dell'Informativa Privacy: l'invio è bloccato finché non viene spuntata, tramite la normale validazione HTML del browser (`required`), senza bisogno di JavaScript aggiuntivo.
+Il form include anche una checkbox obbligatoria di accettazione dell'Informativa Privacy (collegata a `privacy.html`): l'invio è bloccato finché non viene spuntata, tramite la normale validazione HTML del browser (`required`), senza bisogno di JavaScript aggiuntivo.
 
 ## Responsive
 

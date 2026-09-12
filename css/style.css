@@ -1512,3 +1512,111 @@ body:has(.cookie-banner.is-visible) .back-to-top {
   .ad-banner.ad-banner--desktop-only { display: none; }
   .ad-banner.ad-banner--mobile-only { display: flex; }
 }
+
+/* ---------- 12. Pagina Contatti ---------- */
+.contact-hero {
+  padding-block: var(--space-8);
+  text-align: center;
+}
+.contact-hero p.lead {
+  max-width: 560px;
+  margin-inline: auto;
+  color: var(--color-text-muted);
+  font-size: var(--fs-md);
+}
+
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-5);
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.contact-link:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+
+.contact-link__icon {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--color-bg-alt);
+  font-size: 1.5rem;
+}
+.contact-link__icon img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.contact-link__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.contact-link__name {
+  font-weight: 600;
+  font-size: var(--fs-md);
+}
+.contact-link__value {
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contact-follow {
+  text-align: center;
+  margin-top: var(--space-8);
+}
+.contact-follow p {
+  color: var(--color-text-muted);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+.contact-follow__icons {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+}
+.contact-follow__icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.contact-follow__icons a:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-primary);
+}
+.contact-follow__icons img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
