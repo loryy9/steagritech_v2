@@ -97,7 +97,7 @@
     bannerEl.setAttribute("aria-label", "Preferenze sui cookie");
     bannerEl.innerHTML =
       '<div class="cookie-banner__inner">' +
-        '<p class="cookie-banner__text">Usiamo cookie tecnici necessari al funzionamento del sito e, solo con il tuo consenso, cookie di analisi per capire come viene usato il blog. Leggi la <a href="cookie.html">Cookie Policy</a>.</p>' +
+        '<p class="cookie-banner__text">Usiamo cookie tecnici necessari al funzionamento del sito e, solo con il tuo consenso, cookie di analisi per capire come viene usato il blog.</p>' +
         '<div class="cookie-banner__actions">' +
           '<button type="button" class="btn btn--outline" data-cookie-reject>Rifiuta</button>' +
           '<button type="button" class="btn btn--primary" data-cookie-accept>Accetta</button>' +
