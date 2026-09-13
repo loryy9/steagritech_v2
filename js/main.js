@@ -158,8 +158,8 @@
       updateCardPosition();
     }
 
-    /* Mobile: niente rotazione. La card compare una sola volta, scorrendo
-       da destra verso sinistra, quando entra nello schermo. */
+    /* Mobile: niente rotazione. La card segue l'ingresso e l'uscita dalla
+       viewport, così il movimento si ripete anche tornando indietro. */
     function setupMobileReveal() {
       card.classList.remove("is-revealed");
       observer = new IntersectionObserver(
@@ -167,7 +167,8 @@
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
               card.classList.add("is-revealed");
-              observer.disconnect();
+            } else {
+              card.classList.remove("is-revealed");
             }
           });
         },

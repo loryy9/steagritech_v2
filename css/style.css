@@ -377,6 +377,16 @@ ul {
   background: transparent;
   cursor: pointer;
   padding: 0;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.hamburger:focus {
+  outline: none;
+  box-shadow: none;
+}
+.hamburger:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
 }
 .hamburger span {
   display: block;
@@ -393,6 +403,7 @@ ul {
 }
 .hamburger[aria-expanded="true"] span:nth-child(2) {
   opacity: 0;
+  transform: scaleX(0);
 }
 .hamburger[aria-expanded="true"] span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
@@ -1866,15 +1877,27 @@ body:has(.cookie-banner.is-visible) .back-to-top {
     min-height: 180px;
   }
 
-  /* Due card affiancate: leggibili ma compatte, con sommario nascosto per
-     lasciare spazio a titolo e immagine. Sotto i 380px, una singola
-     colonna resta più leggibile di due colonne troppo strette. */
-  .articles-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-3);
+  /* Nell'elenco completo ogni card occupa tutta la riga, così il titolo
+     mantiene una larghezza sufficiente per essere letto. Le griglie delle
+     sezioni secondarie diventano invece nastri scorrevoli. */
+  .articles-grid[data-articles-list] {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
   }
-  .related-articles .articles-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .articles-grid:not([data-articles-list]) {
+    display: flex;
+    gap: var(--space-3);
+    overflow-x: auto;
+    padding-bottom: var(--space-2);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+  }
+  .articles-grid:not([data-articles-list]) > * {
+    flex: 0 0 86%;
+    scroll-snap-align: start;
+  }
+  .featured-grid {
+    grid-template-columns: 1fr;
   }
   .article-card__body {
     padding: var(--space-3);
@@ -1950,10 +1973,7 @@ body:has(.cookie-banner.is-visible) .back-to-top {
 }
 
 @media (max-width: 380px) {
-  /* Schermi molto stretti: due colonne diventano troppo strette per essere
-     leggibili, meglio una card sotto l'altra. */
-  .articles-grid,
-  .related-articles .articles-grid {
+  .articles-grid[data-articles-list] {
     grid-template-columns: 1fr;
   }
   .article-card__excerpt {
