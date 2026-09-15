@@ -23,6 +23,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: clip;
 }
 
 body {
@@ -494,9 +495,7 @@ ul {
     border: none;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
-    transform: translate3d(var(--contact-cta-x, 0px), 0, 0)
-        rotate(var(--contact-cta-rotation, -1.2deg))
-        scale(var(--contact-cta-scale, 1));
+    transform: translateX(var(--contact-cta-x, 0px));
     will-change: transform;
     transition:
         box-shadow var(--transition-base),
@@ -507,9 +506,7 @@ ul {
     box-shadow:
         var(--shadow-lg),
         0 0 0 6px color-mix(in srgb, var(--color-primary) 18%, transparent);
-    transform: translate3d(var(--contact-cta-x, 0px), -2px, 0)
-        rotate(var(--contact-cta-rotation, -1.2deg))
-        scale(var(--contact-cta-scale, 1));
+    transform: translateX(var(--contact-cta-x, 0px));
 }
 .contact-cta__eyebrow {
     margin-bottom: var(--space-2);

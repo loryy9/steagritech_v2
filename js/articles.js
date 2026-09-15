@@ -308,6 +308,41 @@
       .join("");
   }
 
+  /* ---------- Home: articoli casuali dopo il banner ---------- */
+  function renderRandomArticles() {
+    var container = document.querySelector("[data-random]");
+    if (!container) return;
+
+    var limit = parseInt(container.getAttribute("data-random"), 10) || 3;
+    var stylesAttr = container.getAttribute("data-styles");
+    var styles = stylesAttr
+      ? stylesAttr.split(",").map(function (s) { return s.trim(); })
+      : null;
+    var showArrow = container.getAttribute("data-arrow") !== "false";
+    var articles = getArticles().slice();
+
+    for (var i = articles.length - 1; i > 0; i -= 1) {
+      var randomIndex = Math.floor(Math.random() * (i + 1));
+      var current = articles[i];
+      articles[i] = articles[randomIndex];
+      articles[randomIndex] = current;
+    }
+
+    articles = articles.slice(0, limit);
+    if (!articles.length) {
+      container.innerHTML = '<p class="state-message">Nessun articolo disponibile al momento.</p>';
+      return;
+    }
+
+    container.innerHTML = articles
+      .map(function (article, index) {
+        var styleName = styles ? styles[index] || styles[styles.length - 1] : "overlay";
+        var template = CARD_STYLES[styleName] || CARD_STYLES.overlay;
+        return template(article, "", showArrow);
+      })
+      .join("");
+  }
+
   /* Se la Home usa impostazioni diverse per mobile (data-styles-mobile),
      ri-renderizza quando si attraversa la soglia dei 1000px (es. si
      ruota il telefono, o si ridimensiona la finestra) così il layout
@@ -454,6 +489,7 @@
     initCardNavigation();
     renderFeatured();
     renderHighlighted();
+    renderRandomArticles();
     initFeaturedResponsive();
     initArticleList();
   });
