@@ -86,6 +86,18 @@
     });
   }
 
+  /* ---------- Link legali temporaneamente disabilitati ---------- */
+  function initBlockedLegalLinks() {
+    document.addEventListener("click", function (event) {
+      var link = event.target.closest("a[href]");
+      if (!link || !/(?:^|\/)(?:privacy|cookie)\.html(?:$|[?#])/i.test(link.getAttribute("href"))) {
+        return;
+      }
+
+      event.preventDefault();
+    });
+  }
+
   /* ---------- Pulsante "torna su" ---------- */
   function initBackToTop() {
     var button = document.createElement("button");
@@ -148,6 +160,7 @@
     initTheme();
     initHamburger();
     markActiveLink();
+    initBlockedLegalLinks();
     initBackToTop();
     initContactCardMotion();
   });
