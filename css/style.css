@@ -26,6 +26,10 @@ html {
     overflow-x: clip;
 }
 
+html.is-menu-open {
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   /* Evita lo scroll orizzontale indesiderato causato da elementi che si

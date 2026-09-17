@@ -50,27 +50,28 @@
     var menu = document.querySelector("[data-navbar-menu]");
     if (!button || !menu) return;
 
-    button.addEventListener("click", function () {
-      var isOpen = menu.classList.toggle("is-open");
+    function setMenuOpen(isOpen) {
+      menu.classList.toggle("is-open", isOpen);
       button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      document.documentElement.classList.toggle("is-menu-open", isOpen);
       document.body.style.overflow = isOpen ? "hidden" : "";
+    }
+
+    button.addEventListener("click", function () {
+      setMenuOpen(!menu.classList.contains("is-open"));
     });
 
     /* chiudi il menu quando si clicca su un link */
     menu.querySelectorAll(".navbar__link").forEach(function (link) {
       link.addEventListener("click", function () {
-        menu.classList.remove("is-open");
-        button.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
+        setMenuOpen(false);
       });
     });
 
     /* chiudi il menu se si allarga la finestra oltre il breakpoint mobile */
     window.addEventListener("resize", function () {
       if (window.innerWidth > 699 && menu.classList.contains("is-open")) {
-        menu.classList.remove("is-open");
-        button.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
+        setMenuOpen(false);
       }
     });
   }
