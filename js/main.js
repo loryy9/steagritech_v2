@@ -49,12 +49,27 @@
     var button = document.querySelector("[data-hamburger]");
     var menu = document.querySelector("[data-navbar-menu]");
     if (!button || !menu) return;
+    var menuIsOpen = false;
+
+    function preventPageScroll(event) {
+      if (!menuIsOpen) return;
+      event.preventDefault();
+    }
+
+    function preventPageScrollKeys(event) {
+      if (!menuIsOpen) return;
+      if ([" ", "PageUp", "PageDown", "Home", "End", "ArrowUp", "ArrowDown"].indexOf(event.key) === -1) return;
+      event.preventDefault();
+    }
+
+    document.addEventListener("wheel", preventPageScroll, { passive: false });
+    document.addEventListener("touchmove", preventPageScroll, { passive: false });
+    document.addEventListener("keydown", preventPageScrollKeys);
 
     function setMenuOpen(isOpen) {
+      menuIsOpen = isOpen;
       menu.classList.toggle("is-open", isOpen);
       button.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      document.documentElement.classList.toggle("is-menu-open", isOpen);
-      document.body.style.overflow = isOpen ? "hidden" : "";
     }
 
     button.addEventListener("click", function () {

@@ -168,7 +168,13 @@
       coverEl.alt = article.title;
       coverEl.style.display = "";
     }
-    if (contentEl) contentEl.innerHTML = article.content || "";
+    if (contentEl) {
+      contentEl.innerHTML = article.content || "";
+      contentEl.querySelectorAll("img").forEach(function (image) {
+        image.loading = "lazy";
+        image.decoding = "async";
+      });
+    }
 
     renderShareButtons(article);
     renderRelatedArticles(article, articles);

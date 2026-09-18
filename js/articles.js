@@ -71,7 +71,7 @@
         escapeHtml(article.title) +
         '"' +
         imageStyleAttr(article) +
-        ' loading="lazy">'
+        ' loading="lazy" decoding="async">'
       : '<div class="article-card__image"></div>';
 
     return (
@@ -104,7 +104,7 @@
 
   function featuredCardTemplate(article, sizeClass, showArrow) {
     var img = article.image
-      ? '<img class="featured-card__image" src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + ' loading="lazy">'
+      ? '<img class="featured-card__image" src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + ' loading="lazy" decoding="async">'
       : "";
 
     return (
@@ -123,7 +123,7 @@
   function glassCardTemplate(article, sizeClass, showArrow) {
     var isLarge = sizeClass === "lg";
     var img = article.image
-      ? '<img src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + ' loading="lazy">'
+      ? '<img src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + ' loading="lazy" decoding="async">'
       : "";
 
     return (
@@ -150,7 +150,7 @@
 
   function compactCardTemplate(article, showArrow) {
     var img = article.image
-      ? '<div class="compact-card__image"><img src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + ' loading="lazy"></div>'
+      ? '<div class="compact-card__image"><img src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + ' loading="lazy" decoding="async"></div>'
       : '<div class="compact-card__image"></div>';
 
     return (

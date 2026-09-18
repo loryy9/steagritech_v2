@@ -26,16 +26,12 @@ html {
     overflow-x: clip;
 }
 
-html.is-menu-open {
-  overflow: hidden;
-}
-
 body {
   margin: 0;
   /* Evita lo scroll orizzontale indesiderato causato da elementi che si
      animano con translateX oltre il bordo dello schermo (es. la card
      contatti che entra da destra su mobile). */
-  overflow-x: hidden;
+  overflow-x: clip;
   font-family: var(--font-base);
   font-size: var(--fs-base);
   line-height: 1.6;
@@ -1695,6 +1691,14 @@ body:has(.cookie-banner.is-visible) .back-to-top {
     --navbar-height: 56px;
   }
 
+  body:has(.navbar__menu.is-open)::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: transparent;
+  }
+
   .navbar__inner {
     grid-template-columns: auto auto;
     justify-content: space-between;
@@ -1736,8 +1740,12 @@ body:has(.cookie-banner.is-visible) .back-to-top {
     transition:
       transform var(--transition-base),
       opacity var(--transition-base);
-    overflow-y: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
     border-radius: 20px 0px 0px 20px;
+    z-index: 101;
   }
   .navbar__menu.is-open {
     transform: translateX(0);

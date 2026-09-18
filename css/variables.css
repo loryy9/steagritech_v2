@@ -104,27 +104,3 @@
   --ad-text: #7a8470;
 }
 
-/* ---- Se l'utente non ha ancora scelto un tema, segui il sistema ---- */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]):not([data-theme="dark"]) {
-    --color-bg: #10140d;
-    --color-bg-alt: #161c11;
-    --color-surface: #1a2115;
-    --color-text: #eef1e8;
-    --color-text-muted: #a2ab97;
-    --color-border: #2c3423;
-
-    --color-primary: #6cbf72;
-    --color-primary-hover: #8dd393;
-    --color-primary-contrast: #0c0f0a;
-    --color-accent: #e0a83f;
-
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
-    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
-
-    --ad-bg: #161c11;
-    --ad-border: #333d29;
-    --ad-text: #7a8470;
-  }
-}
