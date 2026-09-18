@@ -12,7 +12,7 @@ Elenco di tutto quello che resta da modificare/sistemare/correggere prima di pub
 - [ ] **Titoli/descrizioni social per pagina**: personalizzare `og:title`, `og:description`, `twitter:title`, `twitter:description` per ogni pagina (oggi sono generici/uguali ovunque) — vedi `GUIDA-CONFIGURAZIONE.md` sezione 4.
 - [ ] **Google Analytics**: inserire l'ID reale (`G-XXXXXXXXXX`) in `js/cookie-consent.js`, variabile `GA_MEASUREMENT_ID` — vedi `GUIDA-CONFIGURAZIONE.md` sezione 1.
 - [ ] **Banner pubblicitari d'esempio**: in `index.html` (righe con `href="https://example.com"` e `onclick="trackBannerClick('Cliente_Esempio')"`) sostituire con un cliente reale, oppure rimuovere il blocco `<div class="ad-slot container">...</div>` finché non hai un cliente — vedi `GUIDA-CONFIGURAZIONE.md` sezione 2.
-- [ ] **Testo legale privacy/cookie**: completare tutti i placeholder `[DA COMPLETARE]` in `privacy.html` e `cookie.html` (titolare del trattamento, finalità, base giuridica, conservazione dati, data ultimo aggiornamento) — o sostituire con un servizio come Iubenda.
+- [X] **Testo legale privacy/cookie**: completare tutti i placeholder `[DA COMPLETARE]` in `privacy.html` e `cookie.html` (titolare del trattamento, finalità, base giuridica, conservazione dati, data ultimo aggiornamento) — o sostituire con un servizio come Iubenda.
 - [ ] **File `.htaccess`**: caricarlo su Aruba nella cartella principale del sito (già presente nel progetto, manca solo l'upload).
 
 ## Da correggere
@@ -22,7 +22,6 @@ Elenco di tutto quello che resta da modificare/sistemare/correggere prima di pub
 
 ## Nice-to-have (facoltativo, non bloccante)
 
-- [ ] Cancellare le pagine demo `index1.html`...`index5.html` una volta scelto il layout definitivo per la Home (o lasciarle come riferimento, non danno problemi).
 - [ ] Verificare le anteprime social con [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) e [Twitter Card Validator](https://cards-dev.twitter.com/validator) dopo aver messo dominio/immagini reali.
 - [ ] Registrare la proprietà su Google Search Console e inviare la sitemap — vedi `GUIDA-CONFIGURAZIONE.md` sezione 3.
 
