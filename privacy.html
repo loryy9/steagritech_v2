@@ -6,32 +6,77 @@
   <title>Informativa Privacy · Il Mio Blog</title>
   <meta name="robots" content="noindex">
 
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/ico/favicon.png">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <header class="navbar navbar--logo-left">
+  <header class="navbar navbar--logo-left navbar--con-categorie">
     <div class="container navbar__inner">
       <a href="index.html" class="navbar__logo">
-        <img src="assets/logo.svg" alt="Logo del blog">
-        <span>Il Mio Blog</span>
+        <img src="assets/logo.png" alt="Logo del blog" />
       </a>
 
       <nav class="navbar__menu" data-navbar-menu>
         <a href="index.html" class="navbar__link">Home</a>
         <a href="articles.html" class="navbar__link">Articoli</a>
         <a href="contact.html" class="navbar__link">Contatti</a>
+
+        <div class="navbar__menu-section navbar__menu-categories">
+          <span class="navbar__menu-label">Categorie</span>
+          <a href="articles.html?category=Trattori" class="navbar__link navbar__menu-category">Trattori</a>
+          <a href="articles.html?category=Attrezzature" class="navbar__link navbar__menu-category">Attrezzature</a>
+          <a href="articles.html?category=Macchine%20da%20raccolta" class="navbar__link navbar__menu-category">Macchine da raccolta</a>
+          <a href="articles.html?category=Agronomia" class="navbar__link navbar__menu-category">Agronomia</a>
+          <a href="articles.html?category=Altro" class="navbar__link navbar__menu-category">Altro</a>
+        </div>
+
+        <div class="navbar__menu-section navbar__menu-social">
+          <a href="https://www.instagram.com/ste.agritech/" class="navbar__menu-social-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <img class="navbar__social-logo" src="assets/loghi_social/logo_instagram.png" alt="">
+          </a>
+          <a href="https://www.facebook.com/people/steagritech/61561657596577/" class="navbar__menu-social-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <img class="navbar__social-logo" src="assets/loghi_social/logo_facebook.png" alt="">
+          </a>
+          <a href="https://www.youtube.com/@steagritech" class="navbar__menu-social-link" target="_blank" rel="noopener" aria-label="YouTube">
+            <img class="navbar__social-logo" src="assets/loghi_social/logo_youtube.png" alt="">
+          </a>
+          <a href="https://www.tiktok.com/@ste_agritech?_t=ZN-8yzaH3EUsYo&_r=1" class="navbar__menu-social-link" target="_blank" rel="noopener" aria-label="TikTok">
+            <img class="navbar__social-logo" src="assets/loghi_social/logo_tiktok.png" alt="">
+          </a>
+        </div>
       </nav>
 
-      <div class="navbar__actions">
-        <button class="theme-toggle" data-theme-toggle aria-label="Cambia tema">🌙</button>
-        <button class="hamburger" data-hamburger aria-label="Apri il menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+      <nav class="navbar__social" aria-label="Social">
+        <a href="https://www.instagram.com/ste.agritech/" class="navbar__link navbar__social-link" target="_blank" rel="noopener">
+          <img class="navbar__social-logo" src="assets/loghi_social/logo_instagram.png" alt="Instagram">
+        </a>
+        <a href="https://www.facebook.com/people/steagritech/61561657596577/" class="navbar__link navbar__social-link" target="_blank" rel="noopener">
+          <img class="navbar__social-logo" src="assets/loghi_social/logo_facebook.png" alt="Facebook">
+        </a>
+        <a href="https://www.youtube.com/@steagritech" class="navbar__link navbar__social-link" target="_blank" rel="noopener">
+          <img class="navbar__social-logo" src="assets/loghi_social/logo_youtube.png" alt="YouTube">
+        </a>
+        <a href="https://www.tiktok.com/@ste_agritech?_t=ZN-8yzaH3EUsYo&_r=1" class="navbar__link navbar__social-link" target="_blank" rel="noopener">
+          <img class="navbar__social-logo" src="assets/loghi_social/logo_tiktok.png" alt="TikTok">
+        </a>
+      </nav>
+
+      <button class="hamburger" data-hamburger aria-label="Apri il menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+
+    <nav class="categorie" aria-label="Categorie degli articoli">
+      <div class="container categorie__inner">
+        <a href="articles.html?category=Trattori" class="categorie__link">Trattori</a>
+        <a href="articles.html?category=Attrezzature" class="categorie__link">Attrezzature</a>
+        <a href="articles.html?category=Macchine%20da%20raccolta" class="categorie__link">Macchine da raccolta</a>
+        <a href="articles.html?category=Agronomia" class="categorie__link">Agronomia</a>
+        <a href="articles.html?category=Altro" class="categorie__link">Altro</a>
+      </div>
+    </nav>
   </header>
 
   <main>
@@ -52,29 +97,28 @@
 
         <h2>2. Quali dati raccogliamo</h2>
         <ul>
-          <li><strong>Dati del form contatti</strong>: nome, email, oggetto e messaggio, forniti volontariamente da chi compila il form in <a href="contact.html">Contatti</a>.</li>
           <li><strong>Dati di navigazione (Google Analytics)</strong>: solo se hai accettato i cookie di analisi dal banner — pagine visitate, provenienza, dispositivo usato, in forma aggregata/statistica. Vedi la <a href="cookie.html">Cookie Policy</a> per i dettagli.</li>
           <li><strong>Click sui banner pubblicitari</strong>: se hai accettato i cookie di analisi, registriamo il nome del cliente pubblicitario cliccato, per finalità statistiche.</li>
         </ul>
 
         <h2>3. Finalità del trattamento</h2>
         <p>
-          [DA COMPLETARE — es. "rispondere alle richieste inviate tramite il form contatti; analizzare in forma aggregata l'utilizzo del sito per migliorarne i contenuti; rendicontare ai clienti pubblicitari il numero di click ricevuti"]
+          [DA COMPLETARE — es. "analizzare in forma aggregata l'utilizzo del sito per migliorarne i contenuti; rendicontare ai clienti pubblicitari il numero di click ricevuti"]
         </p>
 
         <h2>4. Base giuridica</h2>
         <p>
-          [DA COMPLETARE — tipicamente: consenso dell'utente per form contatti e cookie di analisi, art. 6.1.a GDPR]
+          [DA COMPLETARE — tipicamente: consenso dell'utente per i cookie di analisi, art. 6.1.a GDPR]
         </p>
 
         <h2>5. Conservazione dei dati</h2>
         <p>
-          [DA COMPLETARE — per quanto tempo conservi i dati del form contatti e i dati analitici]
+          [DA COMPLETARE — per quanto tempo conservi i dati analitici]
         </p>
 
         <h2>6. Destinatari e trasferimento dati extra-UE</h2>
         <p>
-          I dati raccolti tramite Google Analytics vengono trattati da Google LLC, che può trasferirli anche fuori dall'Unione Europea. [DA COMPLETARE — specifica le garanzie adottate, es. clausole contrattuali standard di Google, e se usi altri servizi terzi come Formspree/Getform per il form contatti, aggiungili qui.]
+          I dati raccolti tramite Google Analytics vengono trattati da Google LLC, che può trasferirli anche fuori dall'Unione Europea. [DA COMPLETARE — specifica le garanzie adottate, es. clausole contrattuali standard di Google.]
         </p>
 
         <h2>7. Diritti dell'interessato</h2>

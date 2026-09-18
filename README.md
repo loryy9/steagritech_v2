@@ -24,7 +24,7 @@ index1.html ... index5.html   Varianti demo della Home, per confrontare stili/la
                      (vedi "Stili e layout delle card in evidenza" più sotto)
 articles.html        Elenco articoli con ricerca, filtro categoria e "carica altri"
 article.html          Pagina di un singolo articolo (?slug=...), condivisione, articoli correlati
-contact.html          Pagina contatti con form (demo, senza backend) e checkbox privacy
+contact.html          Pagina contatti (email e social, senza form)
 404.html               Pagina "non trovata"
 privacy.html            Informativa privacy (scheletro da completare)
 cookie.html              Cookie Policy (scheletro da completare)
@@ -38,7 +38,6 @@ css/style.css           Stili del sito, organizzato a sezioni commentate
 js/main.js              Menu hamburger + cambio tema + link attivo + pulsante "torna su"
 js/articles.js           Stili/layout delle card in evidenza (CARD_STYLES) + elenco con ricerca, filtro categoria, paginazione
 js/article.js            Articolo singolo: contenuto, condivisione, tempo di lettura, correlati
-js/contact.js            Gestione demo del form contatti
 js/ads.js                Tracciamento dei click sui banner pubblicitari (trackBannerClick)
 js/cookie-consent.js     Banner cookie + attivazione di Google Analytics solo dopo consenso
 
@@ -231,13 +230,9 @@ Ogni pagina ha già i meta tag per le anteprime quando condividi un link su What
 
 ## Pagina 404
 
-`404.html` è la pagina mostrata quando un link non esiste. Sul tuo hosting Aruba, perché venga usata automaticamente al posto della pagina di errore standard del server, aggiungi (o chiedi al supporto di aggiungere) un file `.htaccess` nella cartella principale del sito con questa riga:
+`404.html` è la pagina mostrata quando un link non esiste. Il file `.htaccess` nella cartella principale del progetto contiene già la riga necessaria (`ErrorDocument 404 /404.html`): basta caricarlo su Aruba insieme al resto del sito perché venga usato automaticamente al posto della pagina di errore standard del server.
 
-```
-ErrorDocument 404 /404.html
-```
-
-Senza questo passaggio la pagina resta comunque raggiungibile visitandola direttamente (`tuosito.it/404.html`), semplicemente non compare automaticamente sui link rotti.
+Senza quel file la pagina resta comunque raggiungibile visitandola direttamente (`tuosito.it/404.html`), semplicemente non compare automaticamente sui link rotti.
 
 ## Pulsante "torna su"
 
@@ -346,15 +341,6 @@ con il tuo ID di misurazione reale (lo trovi su analytics.google.com dopo aver c
 **Nota sul tracciamento dei banner pubblicitari**: `trackBannerClick()` (vedi sopra) chiama `gtag`, che esiste solo se Analytics è stato caricato — quindi anche i click sui banner vengono tracciati automaticamente solo se l'utente ha accettato i cookie, senza bisogno di altre modifiche.
 
 **Importante — questo è materiale legale, non solo tecnico**: il testo del banner e le pagine `privacy.html` e `cookie.html` (già collegate nel footer, in una nuova colonna "Legale") sono uno **scheletro di partenza**, non un testo verificato da un legale. Prima di pubblicare il sito, vanno completate con i tuoi dati reali (titolare del trattamento, finalità, ecc. — le parti tra `[ ]` te lo ricordano) oppure sostituite con un servizio come [Iubenda](https://www.iubenda.com), che genera sia il testo legale che un banner equivalente già pronto per il mercato italiano.
-
-## Form contatti
-
-`contact.html` invia il form solo via JavaScript demo (nessun dato reale trasmesso). Per renderlo funzionante:
-
-- collega `action` del form a un servizio come [Formspree](https://formspree.io) o [Getform](https://getform.io), oppure
-- sostituisci la logica in `js/contact.js` con una `fetch()` verso un tuo backend.
-
-Il form include anche una checkbox obbligatoria di accettazione dell'Informativa Privacy (collegata a `privacy.html`): l'invio è bloccato finché non viene spuntata, tramite la normale validazione HTML del browser (`required`), senza bisogno di JavaScript aggiuntivo.
 
 ## Responsive
 

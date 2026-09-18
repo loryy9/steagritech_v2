@@ -88,7 +88,6 @@
   }
 
   function getOrCreateBanner() {
-    return
     if (bannerEl) return bannerEl;
 
     bannerEl = document.createElement("div");
