@@ -501,12 +501,11 @@ ul {
 .contact-cta {
   margin-top: var(--space-8);
   padding-block: var(--space-5) var(--space-6);
-  /* La card al suo interno si anima con translate/transform (scroll su
-     desktop, comparsa da destra su mobile): tagliamo qui, alla sorgente,
-     quello che esce dai bordi, invece di affidarci solo a overflow-x
-     sul body (su alcuni browser mobili non basta finché non c'è un
-     reflow, es. aprendo/chiudendo il menu). */
-  overflow-x: hidden;
+  /* overflow: clip (non hidden) per tagliare il contenuto che esce dai bordi
+     durante l'animazione translateX senza creare un contesto di scroll.
+     A differenza di overflow: hidden, clip non genera una scrollbar sul body
+     nemmeno su browser mobili che non rispettano overflow-x: clip sul body. */
+  overflow: clip;
 }
 .contact-cta__inner {
   max-width: 820px;

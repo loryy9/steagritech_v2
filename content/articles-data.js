@@ -6,8 +6,8 @@
    Per aggiungere un articolo, copia uno degli oggetti qui sotto
    e cambia i valori. Il campo "content" è l'HTML del corpo
    dell'articolo (paragrafi, titoli, immagini, liste...).
-   Il campo "readTime" è opzionale (es. "5 min di lettura"):
-   se presente viene mostrato accanto alla data nelle card.
+   Il tempo di lettura viene calcolato automaticamente dal campo
+   "content", quindi non serve specificarlo manualmente.
 
    INQUADRATURA DELL'IMMAGINE NELLE CARD (entrambi opzionali, servono
    solo nell'anteprima: aprendo l'articolo si vede sempre la foto
@@ -32,7 +32,7 @@ window.BLOG_ARTICLES = [
     excerpt: "Dalla scelta del momento giusto per la trinciatura al desilamento: le indicazioni fondamentali per ottenere un insilato di mais ben conservato.",
     category: "Agronomia",
     date: "2026-09-18",
-    readTime: "8 min di lettura",
+
     image: "assets/articles/tips-insilato/copertina.webp",
     featured: true,
     content: `<p>La trinciatura del mais è una lavorazione tanto spettacolare per noi appassionati di meccanizzazione agricola quanto importante per tutte quelle aziende che hanno la necessità di portare a casa un prodotto di qualità. L’insilato di mais rappresenta una parte fondamentale dell’alimentazione dei ruminanti. Un alimento chiave, soprattutto nella razione dei bovini da latte, grazie al suo valore energetico, all’apporto di fibra e alla facilità di conservazione. In questo articolo vediamo sette consigli per ottenere un insilato di mais perfetto.</p>
@@ -83,7 +83,7 @@ window.BLOG_ARTICLES = [
     excerpt: "Dalla Waterloo Engine Company alla tutela legale: come il verde e il giallo sono diventati il simbolo inconfondibile di John Deere.",
     category: "Altro",
     date: "2026-09-18",
-    readTime: "5 min di lettura",
+
     image: "assets/articles/colore-john-deere/copertina.webp",
     featured: true,
     content: `<p>John Deere è uno dei marchi di macchine agricole più famosi e riconosciuti al mondo. Nel 2023 ha registrato un fatturato di circa 61 miliardi di dollari e conta oltre 83.000 dipendenti a livello globale.</p>
@@ -127,7 +127,7 @@ window.BLOG_ARTICLES = [
     excerpt: "David Hula ha raggiunto 390 quintali di mais per ettaro: ecco le scelte agronomiche e tecniche dietro una resa da record.",
     category: "Altro",
     date: "2026-09-18",
-    readTime: "4 min di lettura",
+
     image: "assets/articles/record-mais/copertina.webp",
     featured: true,
     content: `<p><strong>390 quintali di mais per ettaro:</strong> ecco come David Hula nel 2023 è riuscito a raggiungere questa incredibile produzione, battendo il precedente record del mondo, che tra l’altro era già suo.</p>
@@ -169,7 +169,7 @@ window.BLOG_ARTICLES = [
     excerpt: "Tre modelli, sterzatura elettronica attiva e nuove funzioni di scarico: le principali novità della gamma Krone GX.",
     category: "Attrezzature",
     date: "2026-09-18",
-    readTime: "4 min di lettura",
+
     image: "assets/articles/krone-gx/copertina.webp",
     featured: true,
     content: `<p>Krone ha presentato la versione aggiornata dei suoi carri da trasporto universale GX introducendo tre modelli: GX 360, GX 440 e GX 520, con un volume di carico rispettivamente di 36, 44 e 52 metri cubi. Tutti i nuovi modelli dispongono di una nuova generazione di centraline elettroniche, di una nuova interfaccia grafica e di un design esterno rinnovato.</p>
@@ -198,7 +198,7 @@ window.BLOG_ARTICLES = [
     excerpt: "Tre modelli, il nuovo raccoglitore EasyFlow e il rotore OptiGrass: tutte le novità della gamma Krone MX.",
     category: "Attrezzature",
     date: "2026-09-18",
-    readTime: "5 min di lettura",
+
     image: "assets/articles/krone-mx/copertina.webp",
     featured: true,
     content: `<p>Krone ha appena presentato l’aggiornamento dei suoi carri autocaricanti MX introducendo tre modelli:</p>
@@ -236,7 +236,7 @@ window.BLOG_ARTICLES = [
     excerpt: "Motore, barra di taglio, sistema di trebbiatura e adattamenti specifici: alla scoperta della prima Fendt Ideal a riso in Italia.",
     category: "Macchine da raccolta",
     date: "2026-09-18",
-    readTime: "7 min di lettura",
+
     image: "assets/articles/fendt-ideal-riso/copertina.webp",
     featured: true,
     content: `<p>L’annata agraria 2026 ha visto scendere in campo la prima Fendt Ideal a riso presente sul territorio italiano e, grazie alla disponibilità della concessionaria, ho avuto modo di vederla quasi in anteprima.</p>
@@ -281,7 +281,7 @@ window.BLOG_ARTICLES = [
     excerpt: "Perché le mietitrebbie con quattro cingoli possono fare la differenza nella raccolta del riso su terreni difficili e umidi.",
     category: "Macchine da raccolta",
     date: "2026-09-18",
-    readTime: "5 min di lettura",
+
     image: "assets/articles/mietitrebbie-full-track/copertina.webp",
     featured: true,
     content: `<p>Perché spendere centinaia di migliaia di euro per una mietitrebbia e altre decine di migliaia per equipaggiarla con dei cingoli al posteriore?</p>
@@ -322,7 +322,7 @@ window.BLOG_ARTICLES = [
     excerpt: "Tre nuovi Arion 5 CMATIC da 145 a 180 cavalli: motore, trasmissione continua e comfort per un trattore tuttofare.",
     category: "Trattori",
     date: "2026-09-18",
-    readTime: "4 min di lettura",
+
     image: "assets/articles/claas-arion-5-cmatic/copertina.webp",
     featured: true,
     content: `<p>Dopo aver rinnovato le gamme più potenti, come Axion 8 e Axion 9, Claas pensa ora ai più piccoli, introducendo tre nuovi modelli: ARION 5.180 CMATIC, ARION 5.160 CMATIC e ARION 5.140 CMATIC, con potenze massime rispettivamente pari a 180, 165 e 145 cavalli.</p>
@@ -351,7 +351,7 @@ window.BLOG_ARTICLES = [
     excerpt: "Nuova cabina FendtOne, illuminazione fino a 84.300 lumen, sospensione Smart Ride e motori fino a 680 cavalli.",
     category: "Trattori",
     date: "2026-09-18",
-    readTime: "7 min di lettura",
+
     image: "assets/articles/fendt-1100-vario-mt/copertina.webp",
     featured: true,
     content: `<p>Tra i più grandi cambiamenti troviamo la cabina, che vede un nuovo concetto di illuminazione a LED, e la postazione di guida FendtOne.</p>

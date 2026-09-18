@@ -32,9 +32,21 @@
     return div.innerHTML;
   }
 
+  var WORDS_PER_MINUTE = 200;
+
+  function estimateReadingTime(html) {
+    var text = (html || "").replace(/<[^>]*>/g, " ");
+    var words = text.trim().split(/\s+/).filter(Boolean).length;
+    var minutes = Math.max(1, Math.round(words / WORDS_PER_MINUTE));
+    return minutes + (minutes === 1 ? " minuto di lettura" : " minuti di lettura");
+  }
+
   function metaText(article) {
     var text = formatDate(article.date);
-    if (article.readTime) {
+    if (article.content) {
+      text += " &middot; " + estimateReadingTime(article.content);
+    } else if (article.readTime) {
+      // fallback per compatibilità con vecchi articoli senza content
       text += " &middot; " + escapeHtml(article.readTime);
     }
     return text;
