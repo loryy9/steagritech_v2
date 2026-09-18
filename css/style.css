@@ -501,11 +501,9 @@ ul {
 .contact-cta {
   margin-top: var(--space-8);
   padding-block: var(--space-5) var(--space-6);
-  /* overflow: clip (non hidden) per tagliare il contenuto che esce dai bordi
-     durante l'animazione translateX senza creare un contesto di scroll.
-     A differenza di overflow: hidden, clip non genera una scrollbar sul body
-     nemmeno su browser mobili che non rispettano overflow-x: clip sul body. */
-  overflow: clip;
+  /* Su desktop la card si inclina liberamente (rotate), nessun clip.
+     Su mobile il clip viene aggiunto nella media query qui sotto, dove
+     serve solo per bloccare la scrollbar durante l'ingresso da destra. */
 }
 .contact-cta__inner {
   max-width: 820px;
@@ -1935,6 +1933,13 @@ body:has(.cookie-banner.is-visible) .back-to-top {
     height: 22px;
   }
 
+  /* Clip applicato solo su mobile: qui la card entra con translateX(48px)
+     e senza questo taglio il body mostrerebbe una scrollbar orizzontale
+     durante l'animazione. Su desktop non serve perché la card non esce
+     dai bordi (il translateX è sempre piccolo e centrato). */
+  .contact-cta {
+    overflow: clip;
+  }
   .contact-cta__inner {
     align-items: flex-start;
     flex-direction: column;
