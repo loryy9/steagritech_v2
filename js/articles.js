@@ -59,11 +59,42 @@
     return decl.length ? ' style="' + decl.join(";") + '"' : "";
   }
 
+  /* Attributi di caricamento immagine:
+     - Prima card (isFirst=true): eager + fetchpriority=high per migliorare il LCP
+     - Tutte le altre: lazy + decoding=async (comportamento precedente) */
+  function imageLoadingAttrs(isFirst) {
+    if (isFirst) {
+      return ' loading="eager" fetchpriority="high" decoding="async"';
+    }
+    return ' loading="lazy" decoding="async"';
+  }
+
+  /* Inietta <link rel="preload"> nel <head> per le prime N immagini
+     in evidenza: il browser le scarica subito, prima ancora che il JS
+     abbia finito di costruire il DOM. Impatto diretto sul LCP. */
+  function preloadFirstImages(articles, count) {
+    if (!articles || !articles.length) return;
+    var limit = Math.min(count || 1, articles.length);
+    for (var i = 0; i < limit; i++) {
+      var src = articles[i] && articles[i].image;
+      if (!src) continue;
+      // Evita duplicati
+      if (document.querySelector('link[rel="preload"][href="' + src + '"]')) continue;
+      var link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = src;
+      link.fetchPriority = "high";
+      document.head.appendChild(link);
+    }
+  }
+
+
   function articleCardAttrs(article) {
     return ' data-article-url="article.html?slug=' + encodeURIComponent(article.slug) + '" tabindex="0" role="link"';
   }
 
-  function cardTemplate(article, sizeClass, showArrow) {
+  function cardTemplate(article, sizeClass, showArrow, isFirst) {
     var img = article.image
       ? '<img class="article-card__image" src="' +
         escapeHtml(article.image) +
@@ -71,7 +102,8 @@
         escapeHtml(article.title) +
         '"' +
         imageStyleAttr(article) +
-        ' loading="lazy" decoding="async">'
+        imageLoadingAttrs(isFirst) +
+        '>'
       : '<div class="article-card__image"></div>';
 
     return (
@@ -102,9 +134,9 @@
     );
   }
 
-  function featuredCardTemplate(article, sizeClass, showArrow) {
+  function featuredCardTemplate(article, sizeClass, showArrow, isFirst) {
     var img = article.image
-      ? '<img class="featured-card__image" src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + ' loading="lazy" decoding="async">'
+      ? '<img class="featured-card__image" src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + imageLoadingAttrs(isFirst) + '>'
       : "";
 
     return (
@@ -120,10 +152,10 @@
     );
   }
 
-  function glassCardTemplate(article, sizeClass, showArrow) {
+  function glassCardTemplate(article, sizeClass, showArrow, isFirst) {
     var isLarge = sizeClass === "lg";
     var img = article.image
-      ? '<img src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + ' loading="lazy" decoding="async">'
+      ? '<img src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + imageLoadingAttrs(isFirst) + '>'
       : "";
 
     return (
@@ -148,9 +180,9 @@
     );
   }
 
-  function compactCardTemplate(article, showArrow) {
+  function compactCardTemplate(article, showArrow, isFirst) {
     var img = article.image
-      ? '<div class="compact-card__image"><img src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + ' loading="lazy" decoding="async"></div>'
+      ? '<div class="compact-card__image"><img src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '"' + imageStyleAttr(article) + imageLoadingAttrs(isFirst) + '></div>'
       : '<div class="compact-card__image"></div>';
 
     return (
@@ -176,8 +208,8 @@
     standard: cardTemplate,
     overlay: featuredCardTemplate,
     glass: glassCardTemplate,
-    compact: function (article, sizeClass, showArrow) {
-      return compactCardTemplate(article, showArrow);
+    compact: function (article, sizeClass, showArrow, isFirst) {
+      return compactCardTemplate(article, showArrow, isFirst);
     },
   };
 
@@ -267,11 +299,14 @@
     var pool = featured.length >= limit ? featured : articles;
     var items = sortByDateDesc(pool).slice(0, limit);
 
+    // Preload delle prime immagini above-the-fold per migliorare il LCP
+    preloadFirstImages(items, 2);
+
     container.innerHTML = items
       .map(function (article, i) {
         var styleName = styles ? styles[i] || styles[styles.length - 1] : "overlay";
         var template = CARD_STYLES[styleName] || CARD_STYLES.overlay;
-        return template(article, sizes[i] || "", showArrow);
+        return template(article, sizes[i] || "", showArrow, i === 0);
       })
       .join("");
   }

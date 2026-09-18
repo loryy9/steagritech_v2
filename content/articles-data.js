@@ -50,7 +50,7 @@ window.BLOG_ARTICLES = [
 <h2>Numero 2: lunghezza di taglio</h2>
 <p>La lunghezza di taglio, ovvero la lunghezza dei pezzettini di trinciato, è un parametro fondamentale per ottenere un trinciato di qualità. A parità di coltura, essa dipende da due fattori: umidità e destinazione del prodotto. Più un prodotto è secco, più si disporrà in modo irregolare in trincea e quindi potranno crearsi delle zone in cui rimane intrappolato ossigeno, sfavorendo l’anaerobiosi (condizione necessaria per le fermentazioni che abbasseranno il pH della biomassa permettendone la conservazione). Quindi, se il prodotto tende ad essere secco, occorre diminuire la lunghezza di taglio. In caso contrario, all’aumentare dell’umidità è possibile aumentare la lunghezza di taglio in quanto in fase di riempimento della trincea i singoli pezzettini di trinciato saranno compattati meglio.</p>
 <p>Anche la destinazione d’uso gioca un ruolo importante. Un mais destinato agli impianti di biogas deve essere trinciato più fine per favorire l’azione dei batteri metanigeni. Al contrario, un mais per alimentazione dei ruminanti può essere trinciato con lunghezze maggiori per favorire l’attività ruminale.</p>
-<figure class="article-content__image"><img src="assets/articles/tips-insilato/fine-2-paragrafo.jpg" alt="Lunghezze di trinciatura consigliate per le principali foraggere"></figure>
+<figure class="article-content__image"><img src="assets/articles/tips-insilato/fine-2-paragrafo.webp" alt="Lunghezze di trinciatura consigliate per le principali foraggere"></figure>
 
 <p>Nella tabella soprastante, tratta da un articolo pubblicato sull’<em>Informatore Zootecnico</em> n. 10/2023, il Forage Team di Torino indica le lunghezze di taglio consigliate per alcune colture.</p>
 
