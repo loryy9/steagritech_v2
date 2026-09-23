@@ -101,7 +101,7 @@ Si trovano nell'`<head>` di ogni pagina, es. in `index.html:10-23`:
 
 ### Come personalizzarli, per ogni pagina statica (home, articoli-lista, contatti, privacy, cookie)
 
-1. **`canonical`** e **`og:url`** → l'URL reale e definitiva di quella pagina, stesso dominio ovunque (es. `https://www.steagritech.it/contact.html`).
+1. **`canonical`** e **`og:url`** → l'URL reale e definitiva di quella pagina, stesso dominio ovunque (es. `https://www.steagritech.com/contact.html`).
 2. **`og:title`** e **`twitter:title`** → titolo specifico di quella pagina (non lasciare sempre lo stesso su tutte le pagine).
 3. **`og:description`** e **`twitter:description`** → 1-2 frasi che riassumono il contenuto di quella pagina specifica.
 4. **`og:image`** e **`twitter:image`** → un'immagine reale caricata in `assets/`, dimensioni consigliate **1200×630px** (formato per l'anteprima grande). Sostituisce il placeholder `placehold.co`.
