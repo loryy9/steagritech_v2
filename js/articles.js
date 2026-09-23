@@ -1,16 +1,3 @@
-/* =========================================================
-   articles.js — legge gli articoli da window.BLOG_ARTICLES
-   (definito in content/articles-data.js, incluso PRIMA di
-   questo script) e li mostra:
-   - in home, come "articoli in evidenza" (data-featured="N")
-     e come seconda griglia configurabile (data-highlighted="N")
-   - nella pagina articoli, con paginazione "carica altri" (STEP),
-     ricerca testuale e filtro per categoria (?category=...)
-
-   Nessuna richiesta di rete: funziona anche aprendo i file
-   HTML direttamente col doppio click.
-   ========================================================= */
-
 (function () {
   "use strict";
 

@@ -1,13 +1,3 @@
-/* =========================================================
-   article.js — pagina articolo singolo (article.html?slug=...)
-   Legge lo slug dalla querystring e trova l'articolo in
-   window.BLOG_ARTICLES (definito in content/articles-data.js,
-   incluso PRIMA di questo script).
-
-   Nessuna richiesta di rete: funziona anche aprendo i file
-   HTML direttamente col doppio click.
-   ========================================================= */
-
 (function () {
   "use strict";
 

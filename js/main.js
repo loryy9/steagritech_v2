@@ -76,14 +76,12 @@
       setMenuOpen(!menu.classList.contains("is-open"));
     });
 
-    /* chiudi il menu quando si clicca su un link */
     menu.querySelectorAll(".navbar__link").forEach(function (link) {
       link.addEventListener("click", function () {
         setMenuOpen(false);
       });
     });
 
-    /* chiudi il menu se si allarga la finestra oltre il breakpoint mobile */
     window.addEventListener("resize", function () {
       if (window.innerWidth > 699 && menu.classList.contains("is-open")) {
         setMenuOpen(false);
@@ -136,8 +134,6 @@
     var resizeHandler = null;
     var observer = null;
 
-    /* Desktop/tablet: movimento continuo legato allo scroll (traslazione,
-       rotazione e scala), invariato. */
     function setupDesktopMotion() {
       var frameRequested = false;
 
@@ -174,8 +170,6 @@
       updateCardPosition();
     }
 
-    /* Mobile: niente rotazione. La card segue l'ingresso e l'uscita dalla
-       viewport, così il movimento si ripete anche tornando indietro. */
     function setupMobileReveal() {
       card.classList.remove("is-revealed");
       observer = new IntersectionObserver(
