@@ -553,6 +553,13 @@ ul {
     margin: 0;
     color: color-mix(in srgb, var(--color-primary-contrast) 80%, transparent);
 }
+.contact-cta__link {
+  color: var(--color-primary-contrast);
+  text-decoration: underline;
+}
+.contact-cta__link:hover {
+  color: var(--color-accent);
+}
 .contact-cta .btn--primary {
     background-color: var(--color-accent);
     color: #211505;
@@ -2081,6 +2088,9 @@ body:has(.cookie-banner.is-visible) .back-to-top {
   .contact-cta__inner.is-revealed {
     transform: translateX(0);
     opacity: 1;
+  }
+  .contact-cta__link {
+    color: var(--color-bg) !important;
   }
   .footer__grid {
     grid-template-columns: 1fr;
