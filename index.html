@@ -146,15 +146,27 @@
         </section>
 
         <div class="ad-slot container">
-            <a class="ad-banner ad-banner--leaderboard ad-banner--desktop-only" href="https://example.com"
-                target="_blank" rel="noopener" onclick="trackBannerClick('Cliente_Esempio')">
-                <img src="https://placehold.co/728x90/2e6b3e/ffffff?text=Banner+desktop+728x90"
-                    alt="Banner pubblicitario" />
+            <div class="ad-banner ad-banner--leaderboard ad-banner--desktop-only ad-banner--placeholder">
+                <span class="ad-banner__label">Contattami per inserire la tua pubblicità</span>
+            </div>
+            <div class="ad-banner ad-banner--mobile ad-banner--mobile-only ad-banner--placeholder">
+                <span class="ad-banner__label">Contattami per inserire la tua pubblicità</span>
+            </div>
+
+            <!--
+            Esempio di banner attivo: sostituisci URL, immagini e nome cliente,
+            poi rimuovi i commenti HTML.
+            <a class="ad-banner ad-banner--leaderboard ad-banner--desktop-only"
+                href="https://www.sito-del-cliente.it" target="_blank" rel="noopener"
+                onclick="trackBannerClick('NomeCliente')">
+                <img src="assets/banners/banner-desktop.jpg" alt="Pubblicita NomeCliente" />
             </a>
-            <a class="ad-banner ad-banner--mobile ad-banner--mobile-only" href="https://example.com" target="_blank"
-                rel="noopener" onclick="trackBannerClick('Cliente_Esempio')">
-                <img src="https://placehold.co/320x50/2e6b3e/ffffff?text=Banner+aamobile+320x50" alt="Banner ooo" />
+            <a class="ad-banner ad-banner--mobile ad-banner--mobile-only"
+                href="https://www.sito-del-cliente.it" target="_blank" rel="noopener"
+                onclick="trackBannerClick('NomeCliente')">
+                <img src="assets/banners/banner-mobile.jpg" alt="Pubblicita NomeCliente" />
             </a>
+            -->
         </div>
 
         <section class="section" aria-labelledby="random-articles-title">

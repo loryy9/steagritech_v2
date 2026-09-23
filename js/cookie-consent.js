@@ -2,6 +2,7 @@
 (function () {
   "use strict";
 
+  var GA_MEASUREMENT_ID = "G-XXXXXXX";
 
   var CONSENT_EXPIRY_MONTHS = 6;
 

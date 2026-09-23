@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.tuo-dominio.it/sitemap.xml
+Sitemap: https://www.steagritech.it/sitemap.xml

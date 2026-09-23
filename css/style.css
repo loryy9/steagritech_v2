@@ -1201,6 +1201,12 @@ a.article-header__category:hover {
     padding: var(--space-2);
 }
 
+.ad-banner--placeholder {
+  background-color: #e5e5e5;
+  border-color: #b8b8b8;
+  color: #555555;
+}
+
 /* Banner attivo: l'elemento .ad-banner è direttamente un <a> con dentro l'immagine */
 a.ad-banner {
   display: block;
@@ -1263,6 +1269,119 @@ a.ad-banner img {
     margin-block: var(--space-7);
     display: flex;
     justify-content: center;
+}
+
+/* ---------- Catalogo formati pubblicitari ---------- */
+.catalogo-banner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.catalogo-banner__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.catalogo-banner__nome {
+  margin: 0;
+  font-size: var(--fs-lg);
+}
+
+.catalogo-banner__dimensioni {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+}
+
+.catalogo-banner__anteprima {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90px;
+  overflow: auto;
+  padding: var(--space-3);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+}
+
+.catalogo-banner__anteprima .ad-banner {
+  flex: 0 0 auto;
+}
+
+.demo-pagina {
+  max-width: 1180px;
+  margin-inline: auto;
+  padding: var(--space-6) var(--space-4) var(--space-8);
+}
+
+.demo-pagina__testata {
+  max-width: 760px;
+  margin-bottom: var(--space-6);
+}
+
+.demo-pagina__testata p:last-child {
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+}
+
+.demo-pagina__corpo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 160px;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.demo-pagina__contenuto {
+  min-width: 0;
+}
+
+.demo-pagina__articolo {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.demo-pagina__articolo h2 {
+  margin-bottom: var(--space-2);
+}
+
+.demo-pagina__articolo p {
+  color: var(--color-text-muted);
+}
+
+.demo-pagina__banner {
+  display: flex;
+  justify-content: center;
+  margin-block: var(--space-6);
+  overflow-x: auto;
+}
+
+.demo-pagina__banner .ad-banner {
+  flex: 0 0 auto;
+}
+
+.demo-pagina__laterale {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+@media (max-width: 900px) {
+  .demo-pagina__corpo {
+    grid-template-columns: 1fr;
+  }
+
+  .demo-pagina__laterale {
+    justify-content: flex-start;
+  }
 }
 
 /* ---------- 8. Articolo singolo ---------- */
