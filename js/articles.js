@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var STEP = 3; // quanti articoli caricare ad ogni click / al primo caricamento
+  var STEP = 6; // quanti articoli caricare ad ogni click / al primo caricamento
 
   function formatDate(isoDate) {
     var d = new Date(isoDate);
